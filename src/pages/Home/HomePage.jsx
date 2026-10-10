@@ -1,5 +1,6 @@
 import { CanvasText } from "../../components/ui/CanvasText";
 import { DraggableCardContainer, DraggableCardBody } from "../../components/ui/draggable-card";
+import { ProgramCardItem } from "../../components/ui/ProgramCardItem";
 import { programs } from "../../data/programs";
 import heroCollage1 from "../../assets/images/hero-collage-1.jpeg";
 import heroCollage2 from "../../assets/images/hero-collage-2.jpeg";
@@ -68,21 +69,12 @@ export function HomePage({ setPage }) {
         </div>
         <div className="program-preview-grid">
           {programs.slice(0, 5).map((program, index) => (
-            <article
-              className="program-card premium-hover"
-              key={program.title}
-              style={{ "--i": index }}
-            >
-              <img
-                className="program-card-image"
-                src={program.image}
-                alt={`${program.title} learning environment`}
-                loading="lazy"
-              />
-              <p>{program.age}</p>
-              <h3>{program.title}</h3>
-              <span>{program.detail}</span>
-            </article>
+            <ProgramCardItem
+              key={program.id || program.title}
+              program={program}
+              index={index}
+              setPage={setPage}
+            />
           ))}
         </div>
       </section>

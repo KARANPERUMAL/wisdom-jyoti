@@ -1,8 +1,9 @@
 import { HoverBorderGradient } from "../../components/ui/hover-border-gradient";
+import { ProgramCardItem } from "../../components/ui/ProgramCardItem";
 import { programs } from "../../data/programs";
 import { highlights } from "../../data/highlights";
 
-export function AboutPage() {
+export function AboutPage({ setPage }) {
   return (
     <>
       <section className="inner-hero about-hero">
@@ -36,24 +37,13 @@ export function AboutPage() {
       <section className="page-section-v2 program-detail-section">
         <div className="program-detail-grid">
           {programs.slice(0, 5).map((program, index) => (
-            <article
-              className="program-detail-card yellow-hover-card"
-              key={program.title}
-              data-reveal
-              style={{ "--i": index }}
-            >
-              {program.image && (
-                <img
-                  className="program-card-image"
-                  src={program.image}
-                  alt={`${program.title} learning environment`}
-                  loading="lazy"
-                />
-              )}
-              <p>{program.age}</p>
-              <h3>{program.title}</h3>
-              <span>{program.detail}</span>
-            </article>
+            <ProgramCardItem
+              key={program.id || program.title}
+              program={program}
+              index={index}
+              variant="about"
+              setPage={setPage}
+            />
           ))}
         </div>
       </section>

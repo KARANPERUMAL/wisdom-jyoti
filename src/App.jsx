@@ -55,7 +55,7 @@ export default function App() {
 
       <main className="page-shell-v2" key={page}>
         {page === "home" && <HomePage setPage={setPage} />}
-        {page === "about" && <AboutPage />}
+        {page === "about" && <AboutPage setPage={setPage} />}
         {page === "gallery" && <GalleryPage />}
         {page === "testimonials" && <TestimonialsPage />}
         {page === "contact" && (
