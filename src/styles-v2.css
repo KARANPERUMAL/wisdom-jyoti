@@ -457,6 +457,7 @@ textarea {
 .program-card {
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .program-card {
@@ -1223,7 +1224,7 @@ textarea:hover {
   border-radius: 0.65rem;
   padding: 2.5px;
   background: rgba(16, 24, 40, 0.06);
-  cursor: pointer;
+  cursor: default;
   overflow: hidden;
   transition: transform 0.22s ease, box-shadow 0.22s ease;
 }
