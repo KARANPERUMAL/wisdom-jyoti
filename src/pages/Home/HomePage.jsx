@@ -1,4 +1,5 @@
 import { CanvasText } from "../../components/ui/CanvasText";
+import { DraggableCardContainer, DraggableCardBody } from "../../components/ui/draggable-card";
 import { programs } from "../../data/programs";
 import heroCollage1 from "../../assets/images/hero-collage-1.jpeg";
 import heroCollage2 from "../../assets/images/hero-collage-2.jpeg";
@@ -28,17 +29,17 @@ export function HomePage({ setPage }) {
         </div>
 
         <div className="hero-visual hero-visual-v2" data-reveal>
-          <div className="hero-collage" aria-label="Wisdom Jyoti preschool collage">
-            <figure className="hero-collage-photo hero-collage-one">
-              <img src={heroCollage1} alt="Children sitting together during preschool activity" />
-            </figure>
-            <figure className="hero-collage-photo hero-collage-two">
-              <img src={heroCollage2} alt="Preschool classroom activity at Wisdom Jyoti" />
-            </figure>
-            <figure className="hero-collage-photo hero-collage-three">
-              <img src={heroCollage3} alt="Children enjoying early learning moments" />
-            </figure>
-          </div>
+          <DraggableCardContainer className="hero-collage" aria-label="Wisdom Jyoti preschool collage">
+            <DraggableCardBody className="hero-collage-photo hero-collage-one">
+              <img src={heroCollage1} alt="Children sitting together during preschool activity" draggable="false" />
+            </DraggableCardBody>
+            <DraggableCardBody className="hero-collage-photo hero-collage-two">
+              <img src={heroCollage2} alt="Preschool classroom activity at Wisdom Jyoti" draggable="false" />
+            </DraggableCardBody>
+            <DraggableCardBody className="hero-collage-photo hero-collage-three">
+              <img src={heroCollage3} alt="Children enjoying early learning moments" draggable="false" />
+            </DraggableCardBody>
+          </DraggableCardContainer>
           <div className="photo-card card-one">
             <span>Age Group</span>
             <strong>1 to 6 years</strong>
