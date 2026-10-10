@@ -1,4 +1,5 @@
 import React, { useState, createContext, useContext, useEffect, useId } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "../../lib/utils";
 
@@ -70,24 +71,63 @@ export function MorphingDialogTrigger({ children, className, style, onClick }) {
 export function MorphingDialogContainer({ children }) {
   const { isOpen, setIsOpen } = useContext(MorphingDialogContext);
 
-  return (
+  if (typeof window === "undefined") return null;
+
+  return createPortal(
     <AnimatePresence>
       {isOpen && (
-        <div className="morphing-dialog-overlay fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div
+          className="morphing-dialog-portal-root"
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            zIndex: 999999,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "1rem",
+            boxSizing: "border-box",
+            pointerEvents: "auto",
+          }}
+        >
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setIsOpen(false)}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm"
-            style={{ zIndex: 9998, position: "fixed", top: 0, left: 0, right: 0, bottom: 0, backgroundColor: "rgba(0,0,0,0.65)", backdropFilter: "blur(6px)" }}
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: "rgba(0,0,0,0.65)",
+              backdropFilter: "blur(8px)",
+              WebkitBackdropFilter: "blur(8px)",
+              zIndex: 999999,
+            }}
           />
-          <div className="relative z-50 w-full max-w-2xl max-h-[90vh] overflow-hidden flex items-center justify-center" style={{ zIndex: 9999 }}>
+          <div
+            style={{
+              position: "relative",
+              zIndex: 1000000,
+              width: "100%",
+              maxWidth: "600px",
+              maxHeight: "88vh",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
             {children}
           </div>
         </div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }
 
@@ -105,7 +145,12 @@ export function MorphingDialogContent({ children, className, style }) {
       style={{
         borderRadius: "20px",
         backgroundColor: "#ffffff",
-        boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25)",
+        color: "#0f172a",
+        boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.4)",
+        width: "100%",
+        maxHeight: "85vh",
+        position: "relative",
+        zIndex: 1000001,
         ...style,
       }}
       onClick={(e) => e.stopPropagation()}
@@ -128,24 +173,26 @@ export function MorphingDialogImage({ src, alt, className, style }) {
   );
 }
 
-export function MorphingDialogTitle({ children, className }) {
+export function MorphingDialogTitle({ children, className, style }) {
   const { uniqueId } = useContext(MorphingDialogContext);
   return (
     <motion.h3
       layoutId={`dialog-title-${uniqueId}`}
       className={cn("font-bold text-gray-900 dark:text-white", className)}
+      style={style}
     >
       {children}
     </motion.h3>
   );
 }
 
-export function MorphingDialogSubtitle({ children, className }) {
+export function MorphingDialogSubtitle({ children, className, style }) {
   const { uniqueId } = useContext(MorphingDialogContext);
   return (
     <motion.p
       layoutId={`dialog-subtitle-${uniqueId}`}
       className={cn("text-gray-500 dark:text-gray-400", className)}
+      style={style}
     >
       {children}
     </motion.p>
@@ -165,17 +212,19 @@ export function MorphingDialogClose({ className }) {
         position: "absolute",
         top: "1rem",
         right: "1rem",
-        zIndex: 30,
+        zIndex: 1000005,
         width: "36px",
         height: "36px",
         borderRadius: "50%",
         border: "none",
-        background: "rgba(0,0,0,0.08)",
+        background: "rgba(0,0,0,0.12)",
+        color: "#0f172a",
         cursor: "pointer",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         fontSize: "1.2rem",
+        fontWeight: "bold",
       }}
       aria-label="Close dialog"
     >
