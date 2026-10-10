@@ -35,10 +35,10 @@ export function HomePage({ setPage }) {
               <img src={heroCollage1} alt="Children sitting together during preschool activity" draggable="false" />
             </DraggableCardBody>
             <DraggableCardBody className="hero-collage-photo hero-collage-two">
-              <img src={heroCollage2} alt="Preschool classroom activity at Wisdom Jyoti" draggable="false" />
+              <img src={heroCollage3} alt="Preschool classroom activity at Wisdom Jyoti" draggable="false" />
             </DraggableCardBody>
             <DraggableCardBody className="hero-collage-photo hero-collage-three">
-              <img src={heroCollage3} alt="Children enjoying early learning moments" draggable="false" />
+              <img src={heroCollage2} alt="Children enjoying early learning moments" draggable="false" />
             </DraggableCardBody>
           </DraggableCardContainer>
           <div className="photo-card card-one">

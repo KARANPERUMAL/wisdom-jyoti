@@ -20,14 +20,8 @@ export function ContactPage({ form, submitted, onChange, onSubmit }) {
             <a href="tel:6362424401" className="contact-phone-link">6362424401</a>
           </div>
         </div>
-        <div className="contact-mini-card premium-hover" data-reveal>
+        <div className="contact-logo-only" data-reveal>
           <img src={logo} alt="Wisdom Jyoti logo" />
-          <strong>For registration call</strong>
-          <span>
-            <a href="tel:9738981455" className="contact-phone-link">9738981455</a>{" "}/ {" "}
-            <a href="tel:6362424401" className="contact-phone-link">6362424401</a>
-          </span>
-          <span>8 am - 8 pm</span>
         </div>
       </section>
 

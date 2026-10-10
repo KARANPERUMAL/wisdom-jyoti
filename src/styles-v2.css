@@ -886,8 +886,19 @@ textarea {
   font-size: 1.05rem;
 }
 
-.contact-hero {
-  grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.55fr);
+.contact-logo-only {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.contact-logo-only img {
+  width: 15rem;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 24px rgba(6, 24, 47, 0.15));
 }
 
 .contact-mini-card {
