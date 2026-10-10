@@ -1,6 +1,20 @@
 import { useEffect, useMemo, useState } from "react";
-import heroImage from "./assets/images/hero.avif";
+import { CanvasText } from "./components/ui/CanvasText";
+import { HoverEffect } from "./components/ui/card-hover-effect";
+import { AnimatedTestimonials } from "./components/ui/animated-testimonials";
+import { HoverBorderGradient } from "./components/ui/hover-border-gradient";
 import logo from "./assets/images/logo.png";
+import brainGrowthImg from "./assets/images/brain-growth-begins-early-testimonialspage.jpg";
+import rightAgeImg from "./assets/images/right-age-learning-rhythm-testimonialpage.jpg";
+import confidenceImg from "./assets/images/confidence-through-practice-testimonialpage.jpg";
+import heroCollage1 from "./assets/images/hero-collage-1.jpeg";
+import heroCollage2 from "./assets/images/hero-collage-2.jpeg";
+import heroCollage3 from "./assets/images/hero-collage-3.jpeg";
+import dayCareImage from "./assets/images/day-care-homepage.png";
+import preNurseryImage from "./assets/images/pre-nursery-homepage.png";
+import nurseryImage from "./assets/images/nursery-homepage.png";
+import juniorLkgImage from "./assets/images/junior-lkg-homepage.jpg";
+import seniorUkgImage from "./assets/images/senior-ukg-homepage.png";
 import gallery1 from "./assets/images/gallery1.jpeg";
 import gallery2 from "./assets/images/gallery2.jpeg";
 import gallery3 from "./assets/images/gallery3.jpeg";
@@ -40,31 +54,37 @@ const programs = [
     title: "Day Care",
     age: "1.5 - 6 years",
     detail: "A calm, supervised care routine with creative play, rest time, personal attention, and safe daily engagement.",
+    image: dayCareImage,
   },
   {
-    title: "Play Group",
+    title: "Pre Nursery",
     age: "1 - 3 years",
     detail: "Gentle first-school experiences through sensory play, rhymes, stories, movement, and joyful social habits.",
+    image: preNurseryImage,
   },
   {
     title: "Nursery",
     age: "3 - 4 years",
     detail: "Early literacy, number sense, fine motor work, spoken language, music, dance, and confidence-building activities.",
+    image: nurseryImage,
   },
   {
     title: "Junior KG / LKG",
     age: "4 - 5 years",
     detail: "Structured readiness with phonics, writing practice, number concepts, creative projects, and classroom independence.",
+    image: juniorLkgImage,
   },
   {
     title: "Senior KG / UKG",
     age: "5 - 6 years",
     detail: "Primary-school preparation with reading, writing, math confidence, stage exposure, and social skill development.",
+    image: seniorUkgImage,
   },
   {
     title: "Evening Classes",
     age: "Skill support",
     detail: "After-school learning support for children who need extra practice, activity time, or guided revision.",
+    image: heroCollage1,
   },
 ];
 
@@ -86,6 +106,27 @@ const preschoolImportance = [
     title: "Confidence through practice",
     detail:
       "Small daily wins help children speak, share, ask questions, hold pencils, follow instructions, and enjoy school.",
+  },
+];
+
+const preschoolTestimonials = [
+  {
+    name: "90% Brain Growth",
+    designation: "Brain growth begins early",
+    quote: "A child’s first years are powerful for language, memory, attention, emotional confidence, and social habits.",
+    src: brainGrowthImg,
+  },
+  {
+    name: "1 - 6 Years",
+    designation: "Right-age learning rhythm",
+    quote: "Preschool gives children a gentle routine where play, music, stories, movement, and group time become learning.",
+    src: rightAgeImg,
+  },
+  {
+    name: "Daily Practice",
+    designation: "Confidence through practice",
+    quote: "Small daily wins help children speak, share, ask questions, hold pencils, follow instructions, and enjoy school.",
+    src: confidenceImg,
   },
 ];
 
@@ -229,7 +270,6 @@ function HomePage({ setPage }) {
     <>
       <section className="hero hero-v2">
         <div className="hero-copy" data-reveal>
-          <p className="eyebrow">Admissions open for 2026 - 27</p>
           <h1>
             Little minds,
             <span>wise futures</span>
@@ -249,24 +289,36 @@ function HomePage({ setPage }) {
         </div>
 
         <div className="hero-visual hero-visual-v2" data-reveal>
-          <img className="hero-main-photo" src={heroImage} alt="Children learning at Wisdom Jyoti Preschool" />
+          <div className="hero-collage" aria-label="Wisdom Jyoti preschool collage">
+            <figure className="hero-collage-photo hero-collage-one">
+              <img src={heroCollage1} alt="Children sitting together during preschool activity" />
+            </figure>
+            <figure className="hero-collage-photo hero-collage-two">
+              <img src={heroCollage2} alt="Preschool classroom activity at Wisdom Jyoti" />
+            </figure>
+            <figure className="hero-collage-photo hero-collage-three">
+              <img src={heroCollage3} alt="Children enjoying early learning moments" />
+            </figure>
+          </div>
           <div className="photo-card card-one">
             <span>Age Group</span>
             <strong>1 to 6 years</strong>
           </div>
-          <div className="photo-card card-two">
-            <span>Trial</span>
-            <strong>One week free</strong>
-          </div>
           <p className="scribble note-one">Great place to be</p>
-          <p className="scribble note-two">Building wise leaders</p>
         </div>
       </section>
 
       <section className="ticker ticker-v2">
-        {["Play Group", "Nursery", "Junior KG", "Senior KG", "Day Care", "Evening Classes"].map((item) => (
+        {["Pre Nursery", "Nursery", "Junior KG", "Senior KG", "Day Care", "Evening Classes"].map((item) => (
           <span key={item}>{item}</span>
         ))}
+      </section>
+
+      <section className="age-question-section" data-reveal>
+        <p className="age-kicker">Find the right class</p>
+        <div className="age-text-wrapper" style={{ width: "100%", maxWidth: "1000px" }}>
+          <CanvasText lines={["HOW OLD", "ARE YOU?"]} />
+        </div>
       </section>
 
       <section className="page-section-v2" data-reveal>
@@ -277,6 +329,7 @@ function HomePage({ setPage }) {
         <div className="program-preview-grid">
           {programs.slice(0, 5).map((program, index) => (
             <article className="program-card premium-hover" key={program.title} style={{ "--i": index }}>
+              <img className="program-card-image" src={program.image} alt={`${program.title} learning environment`} loading="lazy" />
               <p>{program.age}</p>
               <h3>{program.title}</h3>
               <span>{program.detail}</span>
@@ -293,7 +346,7 @@ function AboutPage() {
     <>
       <section className="inner-hero about-hero">
         <div data-reveal>
-          <p className="eyebrow">About Us</p>
+          <p className="eyebrow red-eyebrow">About Us</p>
           <h2>Building wise leaders of the future.</h2>
           <p>
             Established in 2024, Wisdom Jyoti Preschool & Skill Development Center gives
@@ -305,21 +358,27 @@ function AboutPage() {
 
       <section className="page-section-v2 split-section">
         <div data-reveal>
-          <p className="eyebrow">Programs</p>
-          <h2>Play Group, Nursery, Junior KG, Senior KG and Day Care.</h2>
+          <p className="eyebrow red-eyebrow">Programs</p>
+          <h2>Pre Nursery, Nursery, Junior KG, Senior KG and Day Care.</h2>
         </div>
-        <div className="highlight-cloud" data-reveal>
-          {highlights.map((highlight) => (
-            <span className="premium-hover" key={highlight}>{highlight}</span>
-          ))}
+        <div className="skills-gradient-grid" data-reveal style={{ width: "100%", marginTop: "1.5rem" }}>
+          <div className="hover-border-grid">
+            {highlights.map((highlight) => (
+              <HoverBorderGradient key={highlight} containerClassName="skill-gradient-card">
+                <span className="skill-gradient-title">{highlight}</span>
+              </HoverBorderGradient>
+            ))}
+          </div>
         </div>
       </section>
 
       <section className="page-section-v2 program-detail-section">
         <div className="program-detail-grid">
-          {programs.map((program, index) => (
-            <article className="program-detail-card premium-hover" key={program.title} data-reveal style={{ "--i": index }}>
-              <div className="program-number">{String(index + 1).padStart(2, "0")}</div>
+          {programs.slice(0, 5).map((program, index) => (
+            <article className="program-detail-card yellow-hover-card" key={program.title} data-reveal style={{ "--i": index }}>
+              {program.image && (
+                <img className="program-card-image" src={program.image} alt={`${program.title} learning environment`} loading="lazy" />
+              )}
               <p>{program.age}</p>
               <h3>{program.title}</h3>
               <span>{program.detail}</span>
@@ -336,7 +395,7 @@ function GalleryPage() {
     <>
       <section className="inner-hero gallery-hero">
         <div data-reveal>
-          <p className="eyebrow">Gallery</p>
+          <p className="eyebrow red-eyebrow">Gallery</p>
           <h2>Moments from school, arranged like a living scrapbook.</h2>
           <p>
             Photos and videos are mixed in a playful collage so the page feels active,
@@ -369,18 +428,14 @@ function TestimonialsPage() {
   return (
     <section className="page-section-v2 testimonials-page importance-page">
       <div className="section-heading center" data-reveal>
-        <p className="eyebrow">Why Preschool Matters</p>
+        <p className="eyebrow red-eyebrow">Why Preschool Matters</p>
         <h2>Early childhood education shapes confidence before school begins.</h2>
       </div>
-      <div className="importance-grid">
-        {preschoolImportance.map((item, index) => (
-          <article className="importance-card premium-hover" key={item.title} data-reveal style={{ "--i": index }}>
-            <strong>{item.stat}</strong>
-            <h3>{item.title}</h3>
-            <p>{item.detail}</p>
-          </article>
-        ))}
+
+      <div data-reveal style={{ width: "100%", marginBlock: "1.5rem" }}>
+        <AnimatedTestimonials testimonials={preschoolTestimonials} autoplay={true} />
       </div>
+
       <div className="brain-path" data-reveal>
         <span>New sounds</span>
         <i />
@@ -399,17 +454,25 @@ function ContactPage({ form, submitted, onChange, onSubmit, mapUrl }) {
     <>
       <section className="inner-hero contact-hero">
         <div data-reveal>
-          <p className="eyebrow">Contact Us</p>
+          <p className="eyebrow red-eyebrow">Contact Us</p>
           <h2>Admission enquiry for Wisdom Jyoti.</h2>
           <p>
             Wisdom Jyoti, 274, 2nd Main Rd, West of Chord Road 2nd Stage,
             Mahalakshmipuram, Bengaluru, Karnataka 560086
           </p>
+          <div className="contact-phone-bar" style={{ marginTop: "0.85rem" }}>
+            <span style={{ fontWeight: 800, color: "var(--red)" }}>Call Us directly: </span>
+            <a href="tel:9738981455" className="contact-phone-link">9738981455</a>
+            <span style={{ marginInline: "0.4rem" }}>/</span>
+            <a href="tel:6362424401" className="contact-phone-link">6362424401</a>
+          </div>
         </div>
         <div className="contact-mini-card premium-hover" data-reveal>
           <img src={logo} alt="Wisdom Jyoti logo" />
           <strong>For registration call</strong>
-          <span>9738981455 / 6362424401</span>
+          <span>
+            <a href="tel:9738981455" className="contact-phone-link">9738981455</a> / <a href="tel:6362424401" className="contact-phone-link">6362424401</a>
+          </span>
           <span>8 am - 8 pm</span>
         </div>
       </section>
