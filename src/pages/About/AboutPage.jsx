@@ -1,9 +1,21 @@
-import { HoverBorderGradient } from "../../components/ui/hover-border-gradient";
 import { ProgramCardItem } from "../../components/ui/ProgramCardItem";
 import { programs } from "../../data/programs";
 import { highlights } from "../../data/highlights";
 
 export function AboutPage({ setPage }) {
+  const auraSizes = [
+    "aura aura-lg",
+    "aura aura-sm",
+    "aura",
+    "aura aura-xl",
+    "aura aura-sm",
+    "aura aura-lg",
+    "aura",
+    "aura aura-sm",
+    "aura aura-lg",
+    "aura aura-xl",
+  ];
+
   return (
     <>
       <section className="inner-hero about-hero">
@@ -24,11 +36,14 @@ export function AboutPage({ setPage }) {
           <h2>Pre Nursery, Nursery, Junior KG, Senior KG and Day Care.</h2>
         </div>
         <div className="skills-gradient-grid" data-reveal style={{ width: "100%", marginTop: "1.5rem" }}>
-          <div className="hover-border-grid">
-            {highlights.map((highlight) => (
-              <HoverBorderGradient key={highlight} containerClassName="skill-gradient-card">
-                <span className="skill-gradient-title">{highlight}</span>
-              </HoverBorderGradient>
+          <div className="aura-grid">
+            {highlights.map((highlight, index) => (
+              <div
+                className={auraSizes[index % auraSizes.length]}
+                key={highlight}
+              >
+                <button className="btn">{highlight}</button>
+              </div>
             ))}
           </div>
         </div>

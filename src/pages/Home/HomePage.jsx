@@ -1,15 +1,18 @@
 import { CanvasText } from "../../components/ui/CanvasText";
 import { DraggableCardContainer, DraggableCardBody } from "../../components/ui/draggable-card";
 import { ProgramCardItem } from "../../components/ui/ProgramCardItem";
+import { Butterfly } from "../../components/ui/Butterfly";
 import { programs } from "../../data/programs";
 import heroCollage1 from "../../assets/images/hero-collage-1.jpeg";
 import heroCollage2 from "../../assets/images/hero-collage-2.jpeg";
 import heroCollage3 from "../../assets/images/hero-collage-3.jpeg";
+import glossySunSticker from "../../assets/images/glossy-smiling-sun-sticker.png";
 
-export function HomePage({ setPage }) {
+export function HomePage({ setPage, onOpenEnquiry }) {
   return (
     <>
       <section className="hero hero-v2">
+        <Butterfly />
         <div className="hero-copy" data-reveal>
           <h1>
             Little minds,
@@ -20,7 +23,10 @@ export function HomePage({ setPage }) {
             creating confident early learners through play, language, movement, music, and care.
           </p>
           <div className="hero-actions">
-            <button className="paint-button" onClick={() => setPage("contact")}>
+            <button
+              className="paint-button"
+              onClick={() => (onOpenEnquiry ? onOpenEnquiry() : setPage("contact"))}
+            >
               Apply Now <span aria-hidden="true">-&gt;</span>
             </button>
             <button className="text-button" onClick={() => setPage("about")}>
@@ -30,6 +36,11 @@ export function HomePage({ setPage }) {
         </div>
 
         <div className="hero-visual hero-visual-v2" data-reveal>
+          <img
+            src={glossySunSticker}
+            alt="Smiling Sun Sticker"
+            className="glossy-sun-sticker"
+          />
           <DraggableCardContainer className="hero-collage" aria-label="Wisdom Jyoti preschool collage">
             <DraggableCardBody className="hero-collage-photo hero-collage-one">
               <img src={heroCollage1} alt="Children sitting together during preschool activity" draggable="false" />

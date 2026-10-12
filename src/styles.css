@@ -115,12 +115,18 @@ a {
 .nav {
   display: flex;
   justify-content: center;
-  gap: clamp(1rem, 3vw, 3.5rem);
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: clamp(0.75rem, 2.5vw, 2.5rem);
+  white-space: nowrap;
 }
 
 .nav button {
   position: relative;
-  padding: 0.55rem 0;
+  padding: 0.55rem 0.2rem;
+  white-space: nowrap !important;
+  word-break: keep-all;
+  flex-shrink: 0;
 }
 
 .nav button::after {
@@ -234,19 +240,7 @@ a {
 }
 
 .hero::before {
-  width: 8rem;
-  height: 8rem;
-  top: 10.5rem;
-  left: 31rem;
-  background: #ffe343;
-  border-radius: 50%;
-  box-shadow:
-    0 -4.2rem 0 -3.55rem #ffe343,
-    0 4.2rem 0 -3.55rem #ffe343,
-    4.2rem 0 0 -3.55rem #ffe343,
-    -4.2rem 0 0 -3.55rem #ffe343;
-  opacity: 0.92;
-  animation: floaty 5.5s ease-in-out infinite;
+  display: none;
 }
 
 .hero::after {
@@ -315,7 +309,7 @@ h1 span {
   min-height: 36rem;
 }
 
-.hero-visual img {
+.hero-visual > img:not(.glossy-sun-sticker) {
   position: absolute;
   inset: 50% auto auto 50%;
   width: min(78vw, 43rem);

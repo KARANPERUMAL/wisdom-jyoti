@@ -10,6 +10,8 @@ import { TestimonialsPage } from "./pages/Testimonials/TestimonialsPage";
 import { ContactPage } from "./pages/Contact/ContactPage";
 
 import { initialForm } from "./data/constants";
+import { EnquiryDialog } from "./components/ui/EnquiryDialog";
+import { submitAdmissionEnquiry } from "./services/enquiryApi";
 
 export default function App() {
   const [page, setPage] = useState("home");
@@ -17,6 +19,7 @@ export default function App() {
   const [scrolled, setScrolled] = useState(false);
   const [form, setForm] = useState(initialForm);
   const [submitted, setSubmitted] = useState(false);
+  const [enquiryOpen, setEnquiryOpen] = useState(false);
 
   useReveal(page);
 
@@ -37,10 +40,16 @@ export default function App() {
     setForm((current) => ({ ...current, [name]: value }));
   };
 
-  const onSubmit = (event) => {
+  const onSubmit = async (event) => {
     event.preventDefault();
-    setSubmitted(true);
-    setForm(initialForm);
+    try {
+      await submitAdmissionEnquiry(form);
+    } catch (err) {
+      console.warn("Contact page submission notice:", err);
+    } finally {
+      setSubmitted(true);
+      setForm(initialForm);
+    }
   };
 
   return (
@@ -51,10 +60,16 @@ export default function App() {
         menuOpen={menuOpen}
         setMenuOpen={setMenuOpen}
         scrolled={scrolled}
+        onOpenEnquiry={() => setEnquiryOpen(true)}
       />
 
       <main className="page-shell-v2" key={page}>
-        {page === "home" && <HomePage setPage={setPage} />}
+        {page === "home" && (
+          <HomePage
+            setPage={setPage}
+            onOpenEnquiry={() => setEnquiryOpen(true)}
+          />
+        )}
         {page === "about" && <AboutPage setPage={setPage} />}
         {page === "gallery" && <GalleryPage />}
         {page === "testimonials" && <TestimonialsPage />}
@@ -67,6 +82,11 @@ export default function App() {
           />
         )}
       </main>
+
+      <EnquiryDialog
+        isOpen={enquiryOpen}
+        onClose={() => setEnquiryOpen(false)}
+      />
     </div>
   );
 }

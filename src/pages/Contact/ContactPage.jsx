@@ -1,6 +1,7 @@
 import logo from "../../assets/images/logo.png";
 import { programs } from "../../data/programs";
 import { mapUrl } from "../../data/constants";
+import { Dropdown } from "../../components/ui/Dropdown";
 
 export function ContactPage({ form, submitted, onChange, onSubmit }) {
   return (
@@ -65,14 +66,15 @@ export function ContactPage({ form, submitted, onChange, onSubmit }) {
               Email
               <input type="email" name="email" value={form.email} onChange={onChange} placeholder="you@example.com" />
             </label>
-            <label>
-              Program
-              <select name="program" value={form.program} onChange={onChange}>
-                {programs.map((program) => (
-                  <option key={program.title}>{program.title}</option>
-                ))}
-              </select>
-            </label>
+            <div style={{ display: "grid", gap: "0.45rem" }}>
+              <span style={{ fontWeight: 800, color: "var(--ink)" }}>Program</span>
+              <Dropdown
+                name="program"
+                value={form.program}
+                onChange={onChange}
+                options={programs.filter((p) => !p.title.toLowerCase().includes("evening"))}
+              />
+            </div>
             <label className="wide">
               Message
               <textarea
