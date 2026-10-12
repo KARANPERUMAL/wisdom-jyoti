@@ -44,8 +44,9 @@ export function ContactPage({ form, submitted, onChange, onSubmit }) {
             <p className="eyebrow">Admission Form</p>
             <h2>Tell us about your child.</h2>
             <p>
-              This frontend form is ready. In the backend step, it can send the enquiry
-              directly to the manager mail ID.
+              Fill in the details with the age category of your child and submit the
+              application. Our team will contact you soon with the best-suited program
+              for your child.
             </p>
             <div className="contact-actions">
               <a className="paint-button" href={mapUrl} target="_blank" rel="noreferrer">
@@ -144,15 +145,15 @@ export function ContactPage({ form, submitted, onChange, onSubmit }) {
                 Email
                 <input type="email" name="email" value={form.email} onChange={onChange} placeholder="you@example.com" />
               </label>
-              <div style={{ display: "grid", gap: "0.45rem" }}>
-                <span style={{ fontWeight: 800, color: "var(--ink)" }}>Program</span>
+              <label>
+                Program
                 <Dropdown
                   name="program"
                   value={form.program}
                   onChange={onChange}
                   options={programs.filter((p) => !p.title.toLowerCase().includes("evening"))}
                 />
-              </div>
+              </label>
               <label className="wide">
                 Message
                 <textarea
