@@ -3,7 +3,11 @@
  * Connects to the Spring Boot backend on Render / localhost.
  */
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:8085";
+const API_BASE_URL =
+  import.meta.env.VITE_API_URL ||
+  (import.meta.env.PROD
+    ? "https://wisdom-jyoti.onrender.com"
+    : "http://localhost:8085");
 
 export async function submitAdmissionEnquiry(formData) {
   const payload = {
