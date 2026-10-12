@@ -11,6 +11,7 @@ export function EnquiryDialog({ isOpen, onClose }) {
   const [form, setForm] = useState(initialForm);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -36,10 +37,24 @@ export function EnquiryDialog({ isOpen, onClose }) {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: undefined }));
+    }
+  };
+
+  const validate = () => {
+    const newErrors = {};
+    if (!form.parentName.trim()) newErrors.parentName = "Parent's name is required";
+    if (!form.childName.trim()) newErrors.childName = "Child's name is required";
+    if (!form.phone.trim()) newErrors.phone = "Phone number is required";
+    return newErrors;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const newErrors = validate();
+    setErrors(newErrors);
+    if (Object.keys(newErrors).length > 0) return;
     setLoading(true);
     try {
       await submitAdmissionEnquiry(form);
@@ -54,6 +69,7 @@ export function EnquiryDialog({ isOpen, onClose }) {
   const handleReset = () => {
     setSubmitted(false);
     setForm(initialForm);
+    setErrors({});
   };
 
   if (typeof window === "undefined") return null;
@@ -350,6 +366,7 @@ export function EnquiryDialog({ isOpen, onClose }) {
                   ) : (
                     <form
                       onSubmit={handleSubmit}
+                      noValidate
                       style={{
                         display: "grid",
                         gap: "1rem",
@@ -370,16 +387,21 @@ export function EnquiryDialog({ isOpen, onClose }) {
                             value={form.parentName}
                             onChange={handleChange}
                             placeholder="Your full name"
-                            required
                             style={{
                               padding: "0.75rem 0.95rem",
                               borderRadius: "10px",
-                              border: "2px solid #e2e8f0",
+                              border: errors.parentName ? "2px solid #ef1118" : "2px solid #e2e8f0",
+                              boxShadow: errors.parentName ? "0 0 0 3px rgba(239,17,24,0.12)" : "none",
                               fontSize: "0.95rem",
                               outline: "none",
                               color: "#0f172a",
                             }}
                           />
+                          {errors.parentName && (
+                            <span style={{ color: "#ef1118", fontSize: "0.78rem", fontWeight: "600", letterSpacing: "0", textTransform: "none", marginTop: "2px" }}>
+                              ⚠ {errors.parentName}
+                            </span>
+                          )}
                         </label>
 
                         <label style={{ display: "grid", gap: "0.35rem", fontSize: "0.88rem", fontWeight: "700", color: "#334155" }}>
@@ -390,16 +412,21 @@ export function EnquiryDialog({ isOpen, onClose }) {
                             value={form.childName}
                             onChange={handleChange}
                             placeholder="Child's name"
-                            required
                             style={{
                               padding: "0.75rem 0.95rem",
                               borderRadius: "10px",
-                              border: "2px solid #e2e8f0",
+                              border: errors.childName ? "2px solid #ef1118" : "2px solid #e2e8f0",
+                              boxShadow: errors.childName ? "0 0 0 3px rgba(239,17,24,0.12)" : "none",
                               fontSize: "0.95rem",
                               outline: "none",
                               color: "#0f172a",
                             }}
                           />
+                          {errors.childName && (
+                            <span style={{ color: "#ef1118", fontSize: "0.78rem", fontWeight: "600", letterSpacing: "0", textTransform: "none", marginTop: "2px" }}>
+                              ⚠ {errors.childName}
+                            </span>
+                          )}
                         </label>
                       </div>
 
@@ -418,16 +445,21 @@ export function EnquiryDialog({ isOpen, onClose }) {
                             value={form.phone}
                             onChange={handleChange}
                             placeholder="+91 98765 43210"
-                            required
                             style={{
                               padding: "0.75rem 0.95rem",
                               borderRadius: "10px",
-                              border: "2px solid #e2e8f0",
+                              border: errors.phone ? "2px solid #ef1118" : "2px solid #e2e8f0",
+                              boxShadow: errors.phone ? "0 0 0 3px rgba(239,17,24,0.12)" : "none",
                               fontSize: "0.95rem",
                               outline: "none",
                               color: "#0f172a",
                             }}
                           />
+                          {errors.phone && (
+                            <span style={{ color: "#ef1118", fontSize: "0.78rem", fontWeight: "600", letterSpacing: "0", textTransform: "none", marginTop: "2px" }}>
+                              ⚠ {errors.phone}
+                            </span>
+                          )}
                         </label>
 
                         <div style={{ display: "grid", gap: "0.35rem", fontSize: "0.88rem", fontWeight: "700", color: "#334155" }}>

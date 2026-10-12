@@ -640,6 +640,36 @@ textarea:focus {
   font-weight: 800;
 }
 
+/* Custom field validation error */
+.field-error-text {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.3rem;
+  color: #ef1118;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  animation: shake 0.3s ease;
+}
+
+/* Red border on the input when the parent label has field-error */
+label.field-error input,
+label.field-error textarea {
+  border-color: #ef1118 !important;
+  box-shadow: 0 0 0 3px rgba(239, 17, 24, 0.12) !important;
+}
+
+@keyframes shake {
+  0%   { transform: translateX(0); }
+  25%  { transform: translateX(-5px); }
+  50%  { transform: translateX(5px); }
+  75%  { transform: translateX(-3px); }
+  100% { transform: translateX(0); }
+}
+
+
 .contact {
   padding-bottom: 3rem;
 }

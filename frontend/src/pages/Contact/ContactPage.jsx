@@ -6,15 +6,42 @@ import { Dropdown } from "../../components/ui/Dropdown";
 
 export function ContactPage({ form, submitted, onChange, onSubmit }) {
   const [showForm, setShowForm] = useState(true);
+  const [errors, setErrors] = useState({});
+
+  const validate = () => {
+    const e = {};
+    if (!form.parentName.trim()) e.parentName = "Parent name is required";
+    if (!form.childName.trim())  e.childName  = "Child name is required";
+    if (!form.phone.trim())      e.phone      = "Phone number is required";
+    return e;
+  };
+
+  const handleChange = (ev) => {
+    onChange(ev);
+    if (errors[ev.target.name]) {
+      setErrors((prev) => ({ ...prev, [ev.target.name]: undefined }));
+    }
+  };
 
   const handleSubmit = (e) => {
+    e.preventDefault();
+    const newErrors = validate();
+    setErrors(newErrors);
+    if (Object.keys(newErrors).length > 0) return;
     onSubmit(e);
     setShowForm(false);
   };
 
   const handleReset = () => {
     setShowForm(true);
+    setErrors({});
   };
+
+  /* helper: input border colour */
+  const inputStyle = (field) => ({
+    borderColor: errors[field] ? "#ef1118" : undefined,
+    boxShadow:   errors[field] ? "0 0 0 3px rgba(239,17,24,0.12)" : undefined,
+  });
 
   return (
     <>
@@ -89,24 +116,10 @@ export function ContactPage({ form, submitted, onChange, onSubmit }) {
               >
                 ✓
               </div>
-              <h3
-                style={{
-                  margin: "0 0 0.5rem 0",
-                  color: "#065f46",
-                  fontSize: "1.4rem",
-                  fontWeight: "800",
-                }}
-              >
+              <h3 style={{ margin: "0 0 0.5rem 0", color: "#065f46", fontSize: "1.4rem", fontWeight: "800" }}>
                 Thank You!
               </h3>
-              <p
-                style={{
-                  margin: "0 0 1.25rem 0",
-                  color: "#047857",
-                  fontSize: "0.96rem",
-                  lineHeight: "1.6",
-                }}
-              >
+              <p style={{ margin: "0 0 1.25rem 0", color: "#047857", fontSize: "0.96rem", lineHeight: "1.6" }}>
                 Your admission enquiry for Wisdom Jyoti has been received successfully.
                 Our team will contact you shortly.
               </p>
@@ -121,49 +134,81 @@ export function ContactPage({ form, submitted, onChange, onSubmit }) {
                   fontWeight: "700",
                   cursor: "pointer",
                   fontSize: "0.9rem",
-                  transition: "transform 0.2s ease, box-shadow 0.2s ease",
                 }}
               >
                 Submit Another Enquiry
               </button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} noValidate>
               <label>
                 Parent name
-                <input name="parentName" value={form.parentName} onChange={onChange} placeholder="Your name" required />
+                <input
+                  name="parentName"
+                  value={form.parentName}
+                  onChange={handleChange}
+                  placeholder="Your name"
+                  style={inputStyle("parentName")}
+                />
+                {errors.parentName && <span className="field-error-text">{errors.parentName}</span>}
               </label>
+
               <label>
                 Child name
-                <input name="childName" value={form.childName} onChange={onChange} placeholder="Child name" required />
+                <input
+                  name="childName"
+                  value={form.childName}
+                  onChange={handleChange}
+                  placeholder="Child name"
+                  style={inputStyle("childName")}
+                />
+                {errors.childName && <span className="field-error-text">{errors.childName}</span>}
               </label>
+
               <label>
                 Phone number
-                <input name="phone" value={form.phone} onChange={onChange} placeholder="+91 98765 43210" required />
+                <input
+                  name="phone"
+                  value={form.phone}
+                  onChange={handleChange}
+                  placeholder="+91 98765 43210"
+                  style={inputStyle("phone")}
+                />
+                {errors.phone && <span className="field-error-text">{errors.phone}</span>}
               </label>
+
               <label>
                 Email
-                <input type="email" name="email" value={form.email} onChange={onChange} placeholder="you@example.com" />
+                <input
+                  type="email"
+                  name="email"
+                  value={form.email}
+                  onChange={handleChange}
+                  placeholder="you@example.com"
+                />
               </label>
+
               <label>
                 Program
                 <Dropdown
                   name="program"
                   value={form.program}
-                  onChange={onChange}
+                  onChange={handleChange}
                   options={programs.filter((p) => !p.title.toLowerCase().includes("evening"))}
                 />
               </label>
+
               <label className="wide">
                 Message
                 <textarea
                   name="message"
                   value={form.message}
-                  onChange={onChange}
+                  onChange={handleChange}
                   placeholder="Preferred timing, age, or anything you want us to know"
                   rows="4"
                 />
               </label>
+
               <button className="paint-button wide" type="submit">
                 Send Enquiry <span aria-hidden="true">-&gt;</span>
               </button>
