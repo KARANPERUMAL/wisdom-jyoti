@@ -604,6 +604,21 @@ label {
   text-transform: uppercase;
 }
 
+/* Mirrors label styles but is a div — avoids the double-click toggle bug
+   when wrapping a custom dropdown component inside a label */
+.form-field-group {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.form-field-label {
+  color: #06182f;
+  font-size: 0.82rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 input,
 select,
 textarea {

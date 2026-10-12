@@ -188,15 +188,17 @@ export function ContactPage({ form, submitted, onChange, onSubmit }) {
                 />
               </label>
 
-              <label>
-                Program
+              {/* div instead of label – label wrapping a custom dropdown causes double-click toggle bug */}
+              <div className="form-field-group">
+                <span className="form-field-label">Program</span>
                 <Dropdown
                   name="program"
                   value={form.program}
                   onChange={handleChange}
                   options={programs.filter((p) => !p.title.toLowerCase().includes("evening"))}
+                  variant="contact"
                 />
-              </label>
+              </div>
 
               <label className="wide">
                 Message

@@ -7,6 +7,7 @@ export function Dropdown({
   options = [],
   placeholder = "Select an option",
   className = "",
+  variant = "default", // "default" | "contact"
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -56,25 +57,51 @@ export function Dropdown({
         role="button"
         className="btn dropdown-trigger"
         onClick={() => setIsOpen(!isOpen)}
-        style={{
-          width: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          padding: "0.75rem 0.95rem",
-          borderRadius: "10px",
-          border: "2px solid #e2e8f0",
-          backgroundColor: "#ffffff",
-          color: "#0f172a",
-          fontSize: "0.95rem",
-          fontWeight: "700",
-          cursor: "pointer",
-          boxSizing: "border-box",
-          userSelect: "none",
-          transition: "border-color 0.2s ease, box-shadow 0.2s ease",
-          borderColor: isOpen ? "#06182f" : "#e2e8f0",
-          boxShadow: isOpen ? "0 0 0 3px rgba(6, 24, 47, 0.08)" : "none",
-        }}
+        style={
+          variant === "contact"
+            ? {
+                width: "100%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                padding: "0.95rem 1rem",
+                borderRadius: 0,
+                border: isOpen
+                  ? "2px solid #ef1118"
+                  : "2px solid rgba(6, 24, 47, 0.22)",
+                backgroundColor: "rgba(255, 255, 255, 0.82)",
+                color: "#06182f",
+                fontSize: "0.95rem",
+                fontWeight: "600",
+                cursor: "pointer",
+                boxSizing: "border-box",
+                userSelect: "none",
+                letterSpacing: 0,
+                transition: "border-color 150ms ease, box-shadow 150ms ease",
+                boxShadow: isOpen
+                  ? "0 0 0 0.22rem rgba(239, 17, 24, 0.12)"
+                  : "none",
+              }
+            : {
+                width: "100%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                padding: "0.75rem 0.95rem",
+                borderRadius: "10px",
+                border: "2px solid #e2e8f0",
+                backgroundColor: "#ffffff",
+                color: "#0f172a",
+                fontSize: "0.95rem",
+                fontWeight: "700",
+                cursor: "pointer",
+                boxSizing: "border-box",
+                userSelect: "none",
+                transition: "border-color 0.2s ease, box-shadow 0.2s ease",
+                borderColor: isOpen ? "#06182f" : "#e2e8f0",
+                boxShadow: isOpen ? "0 0 0 3px rgba(6, 24, 47, 0.08)" : "none",
+              }
+        }
       >
         <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
           {displayLabel}
