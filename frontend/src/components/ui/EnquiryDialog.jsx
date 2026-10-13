@@ -189,7 +189,7 @@ export function EnquiryDialog({ isOpen, onClose }) {
               <ScrollArea className="h-full max-h-[88vh]">
                 <div style={{ padding: "1.75rem clamp(1.2rem, 3.5vw, 2.2rem)" }}>
                   {/* Badge & Heading */}
-                  <div style={{ marginBottom: "1.25rem" }}>
+                  <div style={{ marginBottom: "1.25rem", paddingRight: "2.2rem" }}>
                     <span
                       style={{
                         display: "inline-block",
@@ -209,7 +209,7 @@ export function EnquiryDialog({ isOpen, onClose }) {
                     <h2
                       style={{
                         margin: "0.2rem 0 0.4rem 0",
-                        fontSize: "clamp(1.5rem, 3vw, 1.95rem)",
+                        fontSize: "clamp(1.4rem, 3.2vw, 1.95rem)",
                         fontWeight: "900",
                         color: "#06182f",
                         lineHeight: "1.15",
@@ -392,7 +392,7 @@ export function EnquiryDialog({ isOpen, onClose }) {
                               borderRadius: "10px",
                               border: errors.parentName ? "2px solid #ef1118" : "2px solid #e2e8f0",
                               boxShadow: errors.parentName ? "0 0 0 3px rgba(239,17,24,0.12)" : "none",
-                              fontSize: "0.95rem",
+                              fontSize: "16px",
                               outline: "none",
                               color: "#0f172a",
                             }}
@@ -417,7 +417,7 @@ export function EnquiryDialog({ isOpen, onClose }) {
                               borderRadius: "10px",
                               border: errors.childName ? "2px solid #ef1118" : "2px solid #e2e8f0",
                               boxShadow: errors.childName ? "0 0 0 3px rgba(239,17,24,0.12)" : "none",
-                              fontSize: "0.95rem",
+                              fontSize: "16px",
                               outline: "none",
                               color: "#0f172a",
                             }}
@@ -450,7 +450,7 @@ export function EnquiryDialog({ isOpen, onClose }) {
                               borderRadius: "10px",
                               border: errors.phone ? "2px solid #ef1118" : "2px solid #e2e8f0",
                               boxShadow: errors.phone ? "0 0 0 3px rgba(239,17,24,0.12)" : "none",
-                              fontSize: "0.95rem",
+                              fontSize: "16px",
                               outline: "none",
                               color: "#0f172a",
                             }}
@@ -485,7 +485,7 @@ export function EnquiryDialog({ isOpen, onClose }) {
                             padding: "0.75rem 0.95rem",
                             borderRadius: "10px",
                             border: "2px solid #e2e8f0",
-                            fontSize: "0.95rem",
+                            fontSize: "16px",
                             outline: "none",
                             color: "#0f172a",
                           }}
@@ -504,7 +504,7 @@ export function EnquiryDialog({ isOpen, onClose }) {
                             padding: "0.75rem 0.95rem",
                             borderRadius: "10px",
                             border: "2px solid #e2e8f0",
-                            fontSize: "0.95rem",
+                            fontSize: "16px",
                             outline: "none",
                             color: "#0f172a",
                             resize: "vertical",

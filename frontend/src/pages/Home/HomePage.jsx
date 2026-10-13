@@ -1,7 +1,7 @@
 import { CanvasText } from "../../components/ui/CanvasText";
 import { DraggableCardContainer, DraggableCardBody } from "../../components/ui/draggable-card";
 import { ProgramCardItem } from "../../components/ui/ProgramCardItem";
-import { Butterfly } from "../../components/ui/Butterfly";
+import ButterflyDrift from "../../components/originkit/ui/butterfly-drift";
 import { programs } from "../../data/programs";
 import heroCollage1 from "../../assets/images/hero-collage-1.jpeg";
 import heroCollage2 from "../../assets/images/hero-collage-2.jpeg";
@@ -12,7 +12,25 @@ export function HomePage({ setPage, onOpenEnquiry }) {
   return (
     <>
       <section className="hero hero-v2">
-        <Butterfly />
+        <ButterflyDrift
+          background="transparent"
+          vignette={0}
+          baseColor="#e11d48"
+          accentColor="#ffe343"
+          density={50}
+          size={55}
+          speed={70}
+          hover={130}
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            minWidth: 0,
+            minHeight: 0,
+            zIndex: 1,
+          }}
+        />
         <div className="hero-copy" data-reveal>
           <h1>
             Little minds,
