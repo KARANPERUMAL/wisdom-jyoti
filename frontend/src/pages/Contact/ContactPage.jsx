@@ -3,6 +3,7 @@ import logo from "../../assets/images/logo.png";
 import { programs } from "../../data/programs";
 import { mapUrl } from "../../data/constants";
 import { Dropdown } from "../../components/ui/Dropdown";
+import { Helmet } from "react-helmet-async";
 
 export function ContactPage({ form, submitted, onChange, onSubmit }) {
   const [showForm, setShowForm] = useState(true);
@@ -45,6 +46,16 @@ export function ContactPage({ form, submitted, onChange, onSubmit }) {
 
   return (
     <>
+
+      <Helmet>
+      <title>Contact Wisdom Jyoti Preschool | Bengaluru</title>
+
+      <meta
+        name="description"
+        content="Contact Wisdom Jyoti Preschool in Mahalakshmipuram, Bengaluru, for admissions enquiries. Find our school location, contact numbers and programme information."
+      />
+    </Helmet>
+
       <section className="inner-hero contact-hero">
         <div data-reveal>
           <p className="eyebrow red-eyebrow">Contact Us</p>

@@ -7,10 +7,19 @@ import heroCollage1 from "../../assets/images/hero-collage-1.jpeg";
 import heroCollage2 from "../../assets/images/hero-collage-2.jpeg";
 import heroCollage3 from "../../assets/images/hero-collage-3.jpeg";
 import glossySunSticker from "../../assets/images/glossy-smiling-sun-sticker.png";
+import { Helmet } from "react-helmet-async";
 
 export function HomePage({ setPage, onOpenEnquiry }) {
   return (
     <>
+
+      <Helmet>
+        <title>Wisdom Jyoti Preschool in Mahalakshmipuram, Bengaluru</title>
+        <meta
+          name="description"
+          content="Discover Wisdom Jyoti Preschool in Mahalakshmipuram, Bengaluru, offering Pre-Nursery, Nursery, Junior KG, Senior KG, Day Care and engaging early learning experiences."
+        />
+      </Helmet>
       <section className="hero hero-v2">
         <ButterflyDrift
           background="transparent"
