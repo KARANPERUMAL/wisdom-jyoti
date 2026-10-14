@@ -34,7 +34,7 @@ export function AboutPage({ setPage }) {
       <section className="inner-hero about-hero">
         <div data-reveal>
           <p className="eyebrow red-eyebrow">About Us</p>
-          <h2>Building wise leaders of the future.</h2>
+          <h1>Building wise leaders of the future.</h1>
           <p>
             Established in 2024, Wisdom Jyoti Preschool &amp; Skill Development Center gives
             children a joyful first learning experience rooted in care, confidence,

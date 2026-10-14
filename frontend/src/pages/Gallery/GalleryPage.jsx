@@ -63,6 +63,7 @@ export function GalleryPage() {
         content="Explore the Wisdom Jyoti Preschool gallery featuring school life, classroom activities, creative learning moments, photos and videos."
       />
     </Helmet>
+      <div {...(lightboxIndex !== null ? { "aria-hidden": true } : {})}>
       {/* Playful Scrapbook Gallery Hero */}
       <section className="inner-hero gallery-hero">
         <div data-reveal>
@@ -70,7 +71,7 @@ export function GalleryPage() {
             <span className="badge-sparkle">✨</span>
             <span>School Life &amp; Scrapbook</span>
           </div>
-          <h2>Moments of Joy, Wonder &amp; Discovery.</h2>
+          <h1>Moments of Joy, Wonder &amp; Discovery.</h1>
           <p>
             A vibrant living collection of real classroom explorations, creative messy art,
             outdoor giggles, and memorable kindergarten milestones.
@@ -80,6 +81,7 @@ export function GalleryPage() {
 
       {/* Main Gallery Section */}
       <section className="page-section-v2 gallery-section">
+        <h2 className="gallery-section-heading">Photos &amp; Videos</h2>
         {/* Playful Filter Navigation */}
         <div className="gallery-toolbar" data-reveal>
           <div className="gallery-tabs">
@@ -186,6 +188,7 @@ export function GalleryPage() {
           })}
         </div>
       </section>
+      </div>
 
       {/* Full-Screen Centered Lightbox Portal (Rendered to document.body) */}
       {currentItem &&
@@ -196,6 +199,7 @@ export function GalleryPage() {
             onClick={() => setLightboxIndex(null)}
             role="dialog"
             aria-modal="true"
+            aria-labelledby="gallery-lightbox-title"
           >
             {/* Backdrop Blur */}
             <div className="lightbox-backdrop-veil" />
@@ -267,7 +271,7 @@ export function GalleryPage() {
 
               {/* Caption Footer */}
               <div className="lightbox-cinema-footer">
-                <h4>{currentItem.title}</h4>
+                <h4 id="gallery-lightbox-title">{currentItem.title}</h4>
                 {currentItem.description && <p>{currentItem.description}</p>}
               </div>
             </div>

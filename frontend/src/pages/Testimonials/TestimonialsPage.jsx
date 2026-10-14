@@ -12,11 +12,10 @@ export function TestimonialsPage() {
           content="Discover how early childhood education helps children develop confidence, language skills, social connections and a strong foundation for future learning at Wisdom Jyoti Preschool."
         />
       </Helmet>
-      
       <section className="page-section-v2 testimonials-page importance-page">
         <div className="section-heading center" data-reveal>
           <p className="eyebrow red-eyebrow">Why Preschool Matters</p>
-          <h2>Early childhood education shapes confidence before school begins.</h2>
+          <h1>Early childhood education shapes confidence before school begins.</h1>
         </div>
 
         <div data-reveal style={{ width: "100%", marginBlock: "1.5rem" }}>

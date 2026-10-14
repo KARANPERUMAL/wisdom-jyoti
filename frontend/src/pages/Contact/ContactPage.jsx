@@ -59,7 +59,7 @@ export function ContactPage({ form, submitted, onChange, onSubmit }) {
       <section className="inner-hero contact-hero">
         <div data-reveal>
           <p className="eyebrow red-eyebrow">Contact Us</p>
-          <h2>Admission enquiry for Wisdom Jyoti.</h2>
+          <h1>Admission enquiry for Wisdom Jyoti.</h1>
           <p>
             Wisdom Jyoti, 274, 2nd Main Rd, West of Chord Road 2nd Stage,
             Mahalakshmipuram, Bengaluru, Karnataka 560086

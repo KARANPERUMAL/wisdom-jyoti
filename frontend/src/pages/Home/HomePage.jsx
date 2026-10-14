@@ -94,8 +94,11 @@ export function HomePage({ setPage, onOpenEnquiry }) {
       </section>
 
       <section className="age-question-section" data-reveal>
-        <p className="age-kicker">Find the right class</p>
-        <div className="age-text-wrapper" style={{ width: "100%", maxWidth: "1000px" }}>
+        <h2 className="age-kicker">Find the right class</h2>
+        <div
+          className="age-text-wrapper"
+          style={{ width: "100%", maxWidth: "1000px" }}
+        >
           <CanvasText lines={["HOW OLD", "ARE YOU?"]} />
         </div>
       </section>
