@@ -1,17 +1,27 @@
-import { useEffect, useMemo, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 
 import { Navbar } from "./components/layout/Navbar";
 import { useReveal } from "./hooks/useReveal";
 
+// HomePage is eagerly loaded — it is the initial landing view
 import { HomePage } from "./pages/Home/HomePage";
-import { AboutPage } from "./pages/About/AboutPage";
-import { GalleryPage } from "./pages/Gallery/GalleryPage";
-import { TestimonialsPage } from "./pages/Testimonials/TestimonialsPage";
-import { ContactPage } from "./pages/Contact/ContactPage";
+
+// Lazy-loaded routes: each becomes a separate JS chunk
+const AboutPage        = lazy(() => import("./pages/About/AboutPage"));
+const GalleryPage      = lazy(() => import("./pages/Gallery/GalleryPage"));
+const TestimonialsPage = lazy(() => import("./pages/Testimonials/TestimonialsPage"));
+const ContactPage      = lazy(() => import("./pages/Contact/ContactPage"));
+
+// Lazy-loaded dialog: chunk is NOT requested until the first open
+const EnquiryDialog    = lazy(() => import("./components/ui/EnquiryDialog"));
 
 import { initialForm } from "./data/constants";
-import { EnquiryDialog } from "./components/ui/EnquiryDialog";
 import { submitAdmissionEnquiry } from "./services/enquiryApi";
+
+/** Minimal fallback: preserves min-height to prevent layout shift */
+function PageFallback() {
+  return <div style={{ minHeight: "100vh" }} aria-hidden="true" />;
+}
 
 export default function App() {
   const [page, setPage] = useState("home");
@@ -20,6 +30,9 @@ export default function App() {
   const [form, setForm] = useState(initialForm);
   const [submitted, setSubmitted] = useState(false);
   const [enquiryOpen, setEnquiryOpen] = useState(false);
+  // Tracks whether the dialog has ever been opened this session.
+  // EnquiryDialog is not mounted (and its chunk not fetched) until the first open.
+  const [dialogEverOpened, setDialogEverOpened] = useState(false);
 
   useReveal(page);
 
@@ -60,33 +73,40 @@ export default function App() {
         menuOpen={menuOpen}
         setMenuOpen={setMenuOpen}
         scrolled={scrolled}
-        onOpenEnquiry={() => setEnquiryOpen(true)}
+        onOpenEnquiry={() => { setDialogEverOpened(true); setEnquiryOpen(true); }}
       />
 
-      <main className="page-shell-v2" key={page}>
-        {page === "home" && (
-          <HomePage
-            setPage={setPage}
-            onOpenEnquiry={() => setEnquiryOpen(true)}
-          />
-        )}
-        {page === "about" && <AboutPage setPage={setPage} />}
-        {page === "gallery" && <GalleryPage />}
-        {page === "testimonials" && <TestimonialsPage />}
-        {page === "contact" && (
-          <ContactPage
-            form={form}
-            submitted={submitted}
-            onChange={onChange}
-            onSubmit={onSubmit}
-          />
-        )}
-      </main>
+      <Suspense fallback={<PageFallback />}>
+        <main className="page-shell-v2" key={page}>
+          {page === "home" && (
+            <HomePage
+              setPage={setPage}
+              onOpenEnquiry={() => { setDialogEverOpened(true); setEnquiryOpen(true); }}
+            />
+          )}
+          {page === "about" && <AboutPage setPage={setPage} />}
+          {page === "gallery" && <GalleryPage />}
+          {page === "testimonials" && <TestimonialsPage />}
+          {page === "contact" && (
+            <ContactPage
+              form={form}
+              submitted={submitted}
+              onChange={onChange}
+              onSubmit={onSubmit}
+            />
+          )}
+        </main>
+      </Suspense>
 
-      <EnquiryDialog
-        isOpen={enquiryOpen}
-        onClose={() => setEnquiryOpen(false)}
-      />
+      {/* Dialog chunk only fetched after first Enquiry button click */}
+      {dialogEverOpened && (
+        <Suspense fallback={null}>
+          <EnquiryDialog
+            isOpen={enquiryOpen}
+            onClose={() => setEnquiryOpen(false)}
+          />
+        </Suspense>
+      )}
     </div>
   );
 }
