@@ -1,9 +1,9 @@
-import dayCareImage from "../assets/images/day-care-homepage.png";
-import preNurseryImage from "../assets/images/pre-nursery-homepage.png";
-import nurseryImage from "../assets/images/nursery-homepage.png";
+import dayCareImage from "../assets/images/day-care-homepage.webp";
+import preNurseryImage from "../assets/images/pre-nursery-homepage.webp";
+import nurseryImage from "../assets/images/nursery-homepage.webp";
 import juniorLkgImage from "../assets/images/junior-lkg-homepage.jpg";
-import seniorUkgImage from "../assets/images/senior-ukg-homepage.png";
-import heroCollage1 from "../assets/images/hero-collage-1.jpeg";
+import seniorUkgImage from "../assets/images/senior-ukg-homepage.webp";
+import heroCollage1 from "../assets/images/hero-collage-1.webp";
 
 export const programs = [
   {

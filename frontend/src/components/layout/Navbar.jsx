@@ -1,4 +1,4 @@
-import logo from "../../assets/images/logo.png";
+import logo from "../../assets/images/logo.webp";
 import { navItems } from "../../data/constants";
 
 export function Navbar({ page, setPage, menuOpen, setMenuOpen, scrolled, onOpenEnquiry }) {

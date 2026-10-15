@@ -3,10 +3,10 @@ import { DraggableCardContainer, DraggableCardBody } from "../../components/ui/d
 import { ProgramCardItem } from "../../components/ui/ProgramCardItem";
 import ButterflyDrift from "../../components/originkit/ui/butterfly-drift";
 import { programs } from "../../data/programs";
-import heroCollage1 from "../../assets/images/hero-collage-1.jpeg";
-import heroCollage2 from "../../assets/images/hero-collage-2.jpeg";
-import heroCollage3 from "../../assets/images/hero-collage-3.jpeg";
-import glossySunSticker from "../../assets/images/glossy-smiling-sun-sticker.png";
+import heroCollage1 from "../../assets/images/hero-collage-1.webp";
+import heroCollage2 from "../../assets/images/hero-collage-2.webp";
+import heroCollage3 from "../../assets/images/hero-collage-3.webp";
+import glossySunSticker from "../../assets/images/glossy-smiling-sun-sticker.webp";
 import { Helmet } from "react-helmet-async";
 
 export function HomePage({ setPage, onOpenEnquiry }) {

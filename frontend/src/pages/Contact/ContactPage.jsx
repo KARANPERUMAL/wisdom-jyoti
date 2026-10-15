@@ -1,5 +1,5 @@
 import { useState } from "react";
-import logo from "../../assets/images/logo.png";
+import logo from "../../assets/images/logo.webp";
 import { programs } from "../../data/programs";
 import { mapUrl } from "../../data/constants";
 import { Dropdown } from "../../components/ui/Dropdown";
