@@ -65,7 +65,8 @@ export function HomePage({ setPage, onOpenEnquiry }) {
         <div className="hero-visual hero-visual-v2" data-reveal>
           <img
             src={glossySunSticker}
-            alt="Smiling Sun Sticker"
+            alt=""
+            aria-hidden="true"
             className="glossy-sun-sticker"
           />
           <DraggableCardContainer className="hero-collage" aria-label="Wisdom Jyoti preschool collage">

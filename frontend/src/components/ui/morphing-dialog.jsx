@@ -160,13 +160,16 @@ export function MorphingDialogContent({ children, className, style }) {
   );
 }
 
-export function MorphingDialogImage({ src, alt, className, style }) {
+export function MorphingDialogImage({ src, alt, className, style, loading, width, height }) {
   const { uniqueId } = useContext(MorphingDialogContext);
   return (
     <motion.img
       layoutId={`dialog-image-${uniqueId}`}
       src={src}
       alt={alt}
+      loading={loading}
+      width={width}
+      height={height}
       className={cn("object-cover", className)}
       style={style}
     />

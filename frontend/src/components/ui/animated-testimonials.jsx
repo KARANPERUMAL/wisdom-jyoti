@@ -49,8 +49,8 @@ export function AnimatedTestimonials({
                 >
                   <img
                     src={item.src}
-                    alt={item.name}
-                    loading="lazy"
+                    alt={item.alt || ""}
+                    loading={idx === 0 ? "eager" : "lazy"}
                   />
                   {isActive && <div className="img-card-badge">{item.name}</div>}
                 </div>

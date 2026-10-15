@@ -141,6 +141,7 @@ export function GalleryPage() {
                         muted
                         playsInline
                         className="reel-video-preview"
+                        aria-label={`${item.title}. ${item.description}`}
                       >
                         <source src={`${item.src}#t=0.001`} type="video/mp4" />
                       </video>
@@ -159,7 +160,7 @@ export function GalleryPage() {
                     <div className="photo-card-container">
                       <img
                         src={item.src}
-                        alt={item.title}
+                        alt={item.alt || item.title}
                         loading="lazy"
                         className="polaroid-image"
                       />
@@ -237,6 +238,7 @@ export function GalleryPage() {
                       autoPlay
                       playsInline
                       className="cinema-active-video"
+                      aria-label={`${currentItem.title}. ${currentItem.description}`}
                     >
                       <source src={currentItem.src} type="video/mp4" />
                       Your browser does not support HTML5 video.
@@ -246,7 +248,7 @@ export function GalleryPage() {
                   <div className="cinema-photo-holder">
                     <img
                       src={currentItem.src}
-                      alt={currentItem.title}
+                      alt={currentItem.alt || currentItem.title}
                       className="cinema-active-image"
                     />
                   </div>

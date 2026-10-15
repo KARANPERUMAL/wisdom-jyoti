@@ -22,6 +22,7 @@ export const galleryMedia = [
     aspect: "landscape",
     featured: true,
     description: "Young learners exploring colors, shapes, and hands-on expression.",
+    alt: "Three children standing beside a Ganesh Chaturthi artwork display",
   },
   {
     id: "vid-1",
@@ -44,6 +45,7 @@ export const galleryMedia = [
     aspect: "portrait",
     featured: false,
     description: "Fostering language development and active listening through stories.",
+    alt: "Four preschool children sitting on school steps with backpacks",
   },
   {
     id: "img-3",
@@ -55,6 +57,7 @@ export const galleryMedia = [
     aspect: "square",
     featured: false,
     description: "Montessori-inspired hands-on math and counting activities.",
+    alt: "Child completing a wooden animal puzzle at a yellow table",
   },
   {
     id: "vid-2",
@@ -77,6 +80,7 @@ export const galleryMedia = [
     aspect: "landscape",
     featured: false,
     description: "Safe, supervised outdoor fun fostering social friendships.",
+    alt: "Child in a red shirt posing in a First Day of School photo frame",
   },
   {
     id: "img-5",
@@ -88,6 +92,7 @@ export const galleryMedia = [
     aspect: "portrait",
     featured: false,
     description: "Engaging fine motor skills and sensory tactile learning materials.",
+    alt: "Child giving a thumbs up beside a completed space puzzle",
   },
   {
     id: "vid-3",
@@ -110,6 +115,7 @@ export const galleryMedia = [
     aspect: "landscape",
     featured: false,
     description: "Problem solving games designed to stimulate cognitive growth.",
+    alt: "Two children building a magnetic tile tower",
   },
   {
     id: "img-7",
@@ -121,6 +127,7 @@ export const galleryMedia = [
     aspect: "square",
     featured: false,
     description: "Learning empathy, sharing, and teamwork in a warm environment.",
+    alt: "Child building with large colorful stacking blocks",
   },
   {
     id: "vid-4",
@@ -143,5 +150,6 @@ export const galleryMedia = [
     aspect: "landscape",
     featured: true,
     description: "Celebrating every child's progress, curiosity, and bright smiles.",
+    alt: "Child in a red floral dress posing in a First Day of School photo frame",
   },
 ];

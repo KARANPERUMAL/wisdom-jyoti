@@ -28,6 +28,7 @@ export function ProgramCardItem({ program, index, variant = "default", setPage }
             className="program-card-image"
             src={program.image}
             alt={`${program.title} learning environment`}
+            loading="lazy"
           />
         )}
         <MorphingDialogSubtitle className="program-age">{program.age}</MorphingDialogSubtitle>
@@ -47,7 +48,7 @@ export function ProgramCardItem({ program, index, variant = "default", setPage }
               <div className="flex justify-center mb-6" style={{ width: "100%", maxHeight: "280px", overflow: "hidden", borderRadius: "14px", marginBottom: "1.25rem" }}>
                 <MorphingDialogImage
                   src={program.image}
-                  alt={program.title}
+                  alt={`${program.title} learning environment`}
                   className="w-full h-64 object-cover rounded-xl"
                   style={{ width: "100%", height: "260px", objectFit: "cover", borderRadius: "14px" }}
                 />
