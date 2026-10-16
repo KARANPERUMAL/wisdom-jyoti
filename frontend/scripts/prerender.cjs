@@ -113,6 +113,58 @@ function escapeAttr(str) {
     .replace(/>/g, "&gt;");
 }
 
+function getStructuredData(route) {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Preschool",
+        "@id": "https://wisdom-jyoti.vercel.app/#organization",
+        name: "Wisdom Jyoti Preschool & Skill Development Center",
+        alternateName: "Wisdom Jyoti Preschool",
+        url: "https://wisdom-jyoti.vercel.app/",
+        logo: "https://wisdom-jyoti.vercel.app/og/og-home.webp",
+        image: "https://wisdom-jyoti.vercel.app/og/og-home.webp",
+        telephone: ["+919738981455", "+916362424401"],
+        email: "karanperumaln@gmail.com",
+        address: {
+          "@type": "PostalAddress",
+          streetAddress:
+            "274, 2nd Main Rd, West of Chord Road 2nd Stage, Mahalakshmipuram",
+          addressLocality: "Bengaluru",
+          addressRegion: "Karnataka",
+          postalCode: "560086",
+          addressCountry: "IN",
+        },
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://wisdom-jyoti.vercel.app/#website",
+        url: "https://wisdom-jyoti.vercel.app/",
+        name: "Wisdom Jyoti Preschool",
+        publisher: {
+          "@id": "https://wisdom-jyoti.vercel.app/#organization",
+        },
+        inLanguage: "en",
+      },
+      {
+        "@type": "WebPage",
+        "@id": `${route.canonicalUrl}#webpage`,
+        url: route.canonicalUrl,
+        name: route.title,
+        description: route.description,
+        isPartOf: {
+          "@id": "https://wisdom-jyoti.vercel.app/#website",
+        },
+        about: {
+          "@id": "https://wisdom-jyoti.vercel.app/#organization",
+        },
+        inLanguage: "en",
+      },
+    ],
+  };
+}
+
 function injectMetadata(html, route) {
   // Strip any existing title, canonical, and OG/Twitter tags
   let cleaned = html
@@ -122,7 +174,8 @@ function injectMetadata(html, route) {
     .replace(/<meta[^>]*name=["']description["'][^>]*\/?>/gi, "")
     .replace(/<meta[^>]*property=["']og:[^"']*["'][^>]*\/?>/gi, "")
     .replace(/<meta[^>]*name=["']twitter:[^"']*["'][^>]*\/?>/gi, "")
-    .replace(/<!--\s*(?:Primary Meta Tags|Open Graph|Twitter)[^>]*-->/gi, "");
+    .replace(/<script[^>]*type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>/gi, "")
+    .replace(/<!--\s*(?:Primary Meta Tags|Open Graph|Twitter|Structured Data)[^>]*-->/gi, "");
 
   const tags = [
     `    <title>${escapeHtml(route.title)}</title>`,
@@ -149,6 +202,9 @@ function injectMetadata(html, route) {
     `    <meta name="twitter:title" content="${escapeAttr(route.title)}" />`,
     `    <meta name="twitter:description" content="${escapeAttr(route.description)}" />`,
     `    <meta name="twitter:image" content="${escapeAttr(route.image)}" />`,
+    ``,
+    `    <!-- Structured Data (Schema.org JSON-LD) -->`,
+    `    <script type="application/ld+json" id="schema-structured-data">${JSON.stringify(getStructuredData(route))}</script>`,
   ].join("\n");
 
   // Inject right after viewport meta tag

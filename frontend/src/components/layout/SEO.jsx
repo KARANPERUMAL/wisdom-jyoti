@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
+import { generateStructuredData } from "../../data/structuredData";
 
 export const SITE_URL =
   import.meta.env.VITE_SITE_URL || "https://wisdom-jyoti.vercel.app";
@@ -41,6 +43,23 @@ export function SEO({
     width: 1200,
     height: 630,
   };
+
+  const structuredData = generateStructuredData({
+    title,
+    description,
+    canonicalUrl,
+  });
+
+  useEffect(() => {
+    let script = document.getElementById("schema-structured-data");
+    if (!script) {
+      script = document.createElement("script");
+      script.id = "schema-structured-data";
+      script.type = "application/ld+json";
+      document.head.appendChild(script);
+    }
+    script.textContent = JSON.stringify(structuredData);
+  }, [canonicalUrl, title, description]);
 
   return (
     <Helmet>
