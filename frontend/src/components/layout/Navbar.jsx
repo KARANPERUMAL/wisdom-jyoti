@@ -59,7 +59,7 @@ export function Navbar({ menuOpen, setMenuOpen, scrolled, onOpenEnquiry }) {
         className="btn btn-neutral btn-outline outline-action"
         onClick={handleEnquiryClick}
       >
-        Enquiry <span aria-hidden="true">-&gt;</span>
+        Enquiry&nbsp;<span aria-hidden="true">-&gt;</span>
       </button>
 
       <button

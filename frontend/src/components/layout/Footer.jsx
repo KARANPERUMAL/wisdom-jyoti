@@ -8,6 +8,7 @@ import { ProgramModal } from "../ui/ProgramModal";
 export function Footer({ onOpenEnquiry }) {
   const [selectedProgram, setSelectedProgram] = useState(null);
   const currentYear = new Date().getFullYear();
+  const footerPrograms = programs.filter((p) => p.id !== "evening-classes");
 
   const handleProgramClick = (program) => {
     setSelectedProgram(program);
@@ -274,7 +275,7 @@ export function Footer({ onOpenEnquiry }) {
                 Our Programs
               </h3>
               <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: "0.75rem" }}>
-                {programs.map((prog) => (
+                {footerPrograms.map((prog) => (
                   <li key={prog.id || prog.title}>
                     <button
                       type="button"
@@ -413,12 +414,6 @@ export function Footer({ onOpenEnquiry }) {
                   >
                     karanperumaln@gmail.com
                   </a>
-                </div>
-
-                {/* Timings */}
-                <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", fontSize: "0.85rem", color: "#94a3b8" }}>
-                  <span>⏰</span>
-                  <span>Mon – Sat: 8:00 AM – 8:00 PM</span>
                 </div>
 
                 {/* Admission Enquiry Button */}

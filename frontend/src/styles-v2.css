@@ -1715,6 +1715,20 @@ textarea:hover {
 }
 
 @media (max-width: 1180px) {
+  .header-v2 {
+    padding-inline: clamp(1rem, 2.5vw, 3rem);
+  }
+
+  .nav-v2 {
+    gap: clamp(0.35rem, 1.2vw, 1.2rem);
+  }
+
+  .nav-v2 button,
+  .nav-v2 a {
+    padding: 0.4rem 0.5rem;
+    font-size: 0.68rem;
+  }
+
   .hero-v2,
   .inner-hero,
   .split-section,
@@ -1751,6 +1765,11 @@ textarea:hover {
   }
 
   /* Header & Navigation */
+  .outline-action,
+  .outline-action.btn.btn-neutral.btn-outline {
+    display: none !important;
+  }
+
   .header-v2 {
     padding: 0.65rem 1rem !important;
   }
@@ -2505,7 +2524,18 @@ textarea:hover {
   padding: 0.65rem 1.45rem;
   font-size: 0.95rem;
   cursor: pointer;
+  white-space: nowrap !important;
+  flex-shrink: 0;
+  min-width: max-content;
+  width: auto;
+  line-height: 1;
   transition: all 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.outline-action.btn.btn-neutral.btn-outline span {
+  display: inline-block;
+  white-space: nowrap;
+  line-height: 1;
 }
 
 .btn.btn-neutral.btn-outline:hover,
