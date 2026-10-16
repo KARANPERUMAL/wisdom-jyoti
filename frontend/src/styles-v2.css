@@ -2912,4 +2912,49 @@ textarea:hover {
   text-transform: uppercase;
 }
 
+/* ==========================================================================
+   Professional Footer & Floating WhatsApp Button Enhancements
+   ========================================================================== */
+.site-footer {
+  position: relative;
+  z-index: 10;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.site-footer a:focus-visible,
+.site-footer button:focus-visible {
+  outline: 2px solid #ffe343;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.floating-whatsapp-btn:focus-visible {
+  outline: 3px solid #25d366;
+  outline-offset: 3px;
+}
+
+@media (max-width: 640px) {
+  .floating-whatsapp-btn {
+    width: 50px !important;
+    height: 50px !important;
+  }
+  .floating-whatsapp-btn svg {
+    width: 26px !important;
+    height: 26px !important;
+  }
+  .whatsapp-tooltip {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floating-whatsapp-btn {
+    transition: none !important;
+  }
+  .floating-whatsapp-btn:hover {
+    transform: none !important;
+  }
+}
+
+
 

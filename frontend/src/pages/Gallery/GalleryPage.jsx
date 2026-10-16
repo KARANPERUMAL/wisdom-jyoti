@@ -229,8 +229,10 @@ export function GalleryPage() {
               {/* Main Media Player / Image Stage */}
               <div className="lightbox-cinema-viewport">
                 {currentItem.type === "video" ? (
-                  <div className="cinema-video-holder">
+                  <div className="cinema-video-holder" key={currentItem.id}>
                     <video
+                      key={currentItem.id}
+                      src={currentItem.src}
                       controls
                       autoPlay
                       playsInline
@@ -242,8 +244,9 @@ export function GalleryPage() {
                     </video>
                   </div>
                 ) : (
-                  <div className="cinema-photo-holder">
+                  <div className="cinema-photo-holder" key={currentItem.id}>
                     <img
+                      key={currentItem.id}
                       src={currentItem.src}
                       alt={currentItem.alt || currentItem.title}
                       className="cinema-active-image"

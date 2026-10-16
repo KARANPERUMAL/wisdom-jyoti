@@ -2,6 +2,8 @@ import { lazy, Suspense, useEffect, useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 
 import { Navbar } from "./components/layout/Navbar";
+import { Footer } from "./components/layout/Footer";
+import { FloatingWhatsApp } from "./components/layout/FloatingWhatsApp";
 import { useReveal } from "./hooks/useReveal";
 
 // HomePage is eagerly loaded — it is the initial landing view
@@ -115,6 +117,10 @@ export default function App() {
           </Routes>
         </main>
       </Suspense>
+
+      <Footer onOpenEnquiry={handleOpenEnquiry} />
+
+      <FloatingWhatsApp />
 
       {/* Dialog chunk only fetched after first Enquiry button click */}
       {dialogEverOpened && (
