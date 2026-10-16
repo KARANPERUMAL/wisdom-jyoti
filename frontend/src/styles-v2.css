@@ -73,28 +73,35 @@
   white-space: nowrap;
 }
 
-.nav-v2 button {
+.nav-v2 button,
+.nav-v2 a {
   border-radius: 999px;
   padding: 0.45rem 0.65rem;
   font-size: 0.72rem;
   white-space: nowrap !important;
   word-break: keep-all;
   flex-shrink: 0;
+  text-decoration: none;
+  color: inherit;
   transition: background 180ms ease, transform 180ms ease, color 180ms ease;
 }
 
-.nav-v2 button::after {
+.nav-v2 button::after,
+.nav-v2 a::after {
   bottom: 0.1rem;
 }
 
 .nav-v2 button:hover,
-.nav-v2 button.active {
+.nav-v2 button.active,
+.nav-v2 a:hover,
+.nav-v2 a.active {
   color: var(--red);
   background: transparent;
   transform: translateY(-0.12rem);
 }
 
-.nav-v2 button.active::after {
+.nav-v2 button.active::after,
+.nav-v2 a.active::after {
   transform: scaleX(1);
 }
 
@@ -401,6 +408,7 @@ textarea {
 }
 
 .about-hero h1,
+.programs-hero h1,
 .contact-hero h1,
 .gallery-hero h1 {
   max-width: 33rem;
@@ -1805,7 +1813,8 @@ textarea:hover {
     display: flex !important;
   }
 
-  .nav-v2 button {
+  .nav-v2 button,
+  .nav-v2 a {
     text-align: left !important;
     padding: 0.85rem 1rem !important;
     font-size: 0.95rem !important;
@@ -1814,11 +1823,15 @@ textarea:hover {
     border-radius: 10px !important;
     width: 100% !important;
     background: transparent;
+    text-decoration: none;
+    display: block;
     transition: background-color 0.15s ease, color 0.15s ease;
   }
 
   .nav-v2 button:hover,
-  .nav-v2 button.active {
+  .nav-v2 button.active,
+  .nav-v2 a:hover,
+  .nav-v2 a.active {
     background: rgba(255, 227, 67, 0.35) !important;
     color: var(--red) !important;
   }
@@ -2027,6 +2040,7 @@ textarea:hover {
   }
 
   .about-hero h1,
+  .programs-hero h1,
   .contact-hero h1,
   .gallery-hero h1 {
     font-size: clamp(1.9rem, 7.5vw, 2.9rem) !important;

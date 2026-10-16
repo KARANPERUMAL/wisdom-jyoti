@@ -1,17 +1,16 @@
 import { AnimatedTestimonials } from "../../components/ui/animated-testimonials";
 import { preschoolTestimonials } from "../../data/testimonials";
-import { Helmet } from "react-helmet-async";
+import { SEO } from "../../components/layout/SEO";
 
 export function TestimonialsPage() {
   return (
     <>
-       <Helmet>
-        <title>Why Preschool Matters | Wisdom Jyoti Preschool</title>
-        <meta
-          name="description"
-          content="Discover how early childhood education helps children develop confidence, language skills, social connections and a strong foundation for future learning at Wisdom Jyoti Preschool."
-        />
-      </Helmet>
+      <SEO
+        title="Why Preschool Matters | Wisdom Jyoti Preschool"
+        description="Discover how early childhood education helps children develop confidence, language skills, social connections and a strong foundation for future learning at Wisdom Jyoti Preschool."
+        path="/testimonials"
+        image="/og/og-testimonials.jpg"
+      />
       <section className="page-section-v2 testimonials-page importance-page">
         <div className="section-heading center" data-reveal>
           <p className="eyebrow red-eyebrow">Why Preschool Matters</p>

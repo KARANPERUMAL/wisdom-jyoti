@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { galleryMedia } from "../../data/galleryMedia";
-import { Helmet } from "react-helmet-async";
+import { SEO } from "../../components/layout/SEO";
 
 export function GalleryPage() {
   const [activeFilter, setActiveFilter] = useState("all");
@@ -54,15 +54,12 @@ export function GalleryPage() {
 
   return (
     <>
-
-      <Helmet>
-      <title>Preschool Gallery | Wisdom Jyoti Preschool</title>
-
-      <meta
-        name="description"
-        content="Explore the Wisdom Jyoti Preschool gallery featuring school life, classroom activities, creative learning moments, photos and videos."
+      <SEO
+        title="Preschool Gallery | Wisdom Jyoti Preschool"
+        description="Explore the Wisdom Jyoti Preschool gallery featuring school life, classroom activities, creative learning moments, photos and videos."
+        path="/gallery"
+        image="/og/og-gallery.jpg"
       />
-    </Helmet>
       <div {...(lightboxIndex !== null ? { "aria-hidden": true } : {})}>
       {/* Playful Scrapbook Gallery Hero */}
       <section className="inner-hero gallery-hero">

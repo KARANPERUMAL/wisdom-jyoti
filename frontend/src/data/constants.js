@@ -1,9 +1,10 @@
 export const navItems = [
-  ["Home", "home"],
-  ["About Us", "about"],
-  ["Gallery", "gallery"],
-  ["Testimonials", "testimonials"],
-  ["Contact Us", "contact"],
+  ["Home", "/"],
+  ["About Us", "/about"],
+  ["Programs", "/programs"],
+  ["Gallery", "/gallery"],
+  ["Testimonials", "/testimonials"],
+  ["Contact Us", "/contact"],
 ];
 
 export const mapUrl =

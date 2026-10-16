@@ -1,5 +1,5 @@
 
-import { Helmet } from "react-helmet-async";
+import { SEO } from "../../components/layout/SEO";
 import { ProgramCardItem } from "../../components/ui/ProgramCardItem";
 import { programs } from "../../data/programs";
 import { highlights } from "../../data/highlights";
@@ -20,16 +20,12 @@ export function AboutPage({ setPage }) {
 
   return (
     <>
-      <Helmet>
-        <title>
-          About Wisdom Jyoti Preschool &amp; Skill Development Center
-        </title>
-
-        <meta
-          name="description"
-          content="Learn about Wisdom Jyoti Preschool & Skill Development Center, its child-focused learning approach, creative activities, early education programmes and Day Care."
-        />
-      </Helmet>
+      <SEO
+        title="About Wisdom Jyoti Preschool & Skill Development Center"
+        description="Learn about Wisdom Jyoti Preschool & Skill Development Center, its child-focused learning approach, creative activities, early education programmes and Day Care."
+        path="/about"
+        image="/og/og-about.webp"
+      />
 
       <section className="inner-hero about-hero">
         <div data-reveal>

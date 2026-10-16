@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   MorphingDialog,
   MorphingDialogTrigger,
@@ -96,25 +97,26 @@ export function ProgramCardItem({ program, index, variant = "default", setPage }
                       <p style={{ margin: 0, fontSize: "0.85rem", color: "#64748b" }}>Interested in {program.title}?</p>
                       <p style={{ margin: 0, fontSize: "0.95rem", fontWeight: "700", color: "#0f172a" }}>Wisdom Jyoti Preschool</p>
                     </div>
-                    {setPage && (
-                      <button
-                        onClick={() => {
-                          setPage("contact");
-                        }}
-                        style={{
-                          background: "#e11d48",
-                          color: "#fff",
-                          padding: "0.65rem 1.4rem",
-                          borderRadius: "999px",
-                          border: "none",
-                          fontWeight: "700",
-                          cursor: "pointer",
-                          fontSize: "0.92rem",
-                        }}
-                      >
-                        Enquire Now →
-                      </button>
-                    )}
+                    <Link
+                      to="/contact"
+                      onClick={() => {
+                        if (setPage) setPage("contact");
+                      }}
+                      style={{
+                        background: "#e11d48",
+                        color: "#fff",
+                        padding: "0.65rem 1.4rem",
+                        borderRadius: "999px",
+                        border: "none",
+                        fontWeight: "700",
+                        cursor: "pointer",
+                        fontSize: "0.92rem",
+                        textDecoration: "none",
+                        display: "inline-block",
+                      }}
+                    >
+                      Enquire Now →
+                    </Link>
                   </div>
                 </div>
               </div>

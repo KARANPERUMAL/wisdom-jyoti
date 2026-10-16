@@ -7,19 +7,20 @@ import heroCollage1 from "../../assets/images/hero-collage-1.webp";
 import heroCollage2 from "../../assets/images/hero-collage-2.webp";
 import heroCollage3 from "../../assets/images/hero-collage-3.webp";
 import glossySunSticker from "../../assets/images/glossy-smiling-sun-sticker.webp";
-import { Helmet } from "react-helmet-async";
+import { Link, useNavigate } from "react-router-dom";
+import { SEO } from "../../components/layout/SEO";
 
 export function HomePage({ setPage, onOpenEnquiry }) {
+  const navigate = useNavigate();
+
   return (
     <>
-
-      <Helmet>
-        <title>Wisdom Jyoti Preschool in Mahalakshmipuram, Bengaluru</title>
-        <meta
-          name="description"
-          content="Discover Wisdom Jyoti Preschool in Mahalakshmipuram, Bengaluru, offering Pre-Nursery, Nursery, Junior KG, Senior KG, Day Care and engaging early learning experiences."
-        />
-      </Helmet>
+      <SEO
+        title="Wisdom Jyoti Preschool in Mahalakshmipuram, Bengaluru"
+        description="Discover Wisdom Jyoti Preschool in Mahalakshmipuram, Bengaluru, offering Pre-Nursery, Nursery, Junior KG, Senior KG, Day Care and engaging early learning experiences."
+        path="/"
+        image="/og/og-home.webp"
+      />
       <section className="hero hero-v2">
         <ButterflyDrift
           background="transparent"
@@ -51,14 +52,21 @@ export function HomePage({ setPage, onOpenEnquiry }) {
           </p>
           <div className="hero-actions">
             <button
+              type="button"
               className="paint-button"
-              onClick={() => (onOpenEnquiry ? onOpenEnquiry() : setPage("contact"))}
+              onClick={() => {
+                if (onOpenEnquiry) {
+                  onOpenEnquiry();
+                } else {
+                  navigate("/contact");
+                }
+              }}
             >
               Apply Now <span aria-hidden="true">-&gt;</span>
             </button>
-            <button className="text-button" onClick={() => setPage("about")}>
+            <Link to="/programs" className="text-button">
               Explore Programs
-            </button>
+            </Link>
           </div>
         </div>
 

@@ -1,44 +1,52 @@
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo.webp";
 import { navItems } from "../../data/constants";
 
-export function Navbar({ page, setPage, menuOpen, setMenuOpen, scrolled, onOpenEnquiry }) {
+export function Navbar({ menuOpen, setMenuOpen, scrolled, onOpenEnquiry }) {
+  const navigate = useNavigate();
+
   const handleEnquiryClick = () => {
     if (setMenuOpen) setMenuOpen(false);
     if (onOpenEnquiry) {
       onOpenEnquiry();
     } else {
-      setPage("contact");
+      navigate("/contact");
     }
   };
 
-  const handleNavClick = (id) => {
-    setPage(id);
+  const handleBrandClick = () => {
     if (setMenuOpen) setMenuOpen(false);
   };
 
   return (
     <header className={scrolled ? "site-header header-v2 compact" : "site-header header-v2"}>
-      <button className="brand brand-v2" onClick={() => handleNavClick("home")} aria-label="Go to home">
+      <Link
+        to="/"
+        className="brand brand-v2"
+        onClick={handleBrandClick}
+        aria-label="Wisdom Jyoti Preschool Home"
+      >
         <img src={logo} alt="Wisdom Jyoti logo" />
         <span>
           <strong>Wisdom Jyoti</strong>
           <small>Preschool &amp; Skill Development Center</small>
         </span>
-      </button>
+      </Link>
 
-      <nav
-        className={menuOpen ? "nav nav-v2 open" : "nav nav-v2"}
-      >
-        {navItems.map(([label, id]) => (
-          <button
-            className={page === id ? "active" : ""}
-            key={id}
-            onClick={() => handleNavClick(id)}
+      <nav className={menuOpen ? "nav nav-v2 open" : "nav nav-v2"}>
+        {navItems.map(([label, path]) => (
+          <NavLink
+            key={path}
+            to={path}
+            end={path === "/"}
+            className={({ isActive }) => (isActive ? "active" : "")}
+            onClick={() => setMenuOpen && setMenuOpen(false)}
           >
             {label}
-          </button>
+          </NavLink>
         ))}
         <button
+          type="button"
           className="nav-mobile-enquiry"
           onClick={handleEnquiryClick}
         >
@@ -47,6 +55,7 @@ export function Navbar({ page, setPage, menuOpen, setMenuOpen, scrolled, onOpenE
       </nav>
 
       <button
+        type="button"
         className="btn btn-neutral btn-outline outline-action"
         onClick={handleEnquiryClick}
       >
@@ -54,6 +63,7 @@ export function Navbar({ page, setPage, menuOpen, setMenuOpen, scrolled, onOpenE
       </button>
 
       <button
+        type="button"
         className="menu-button"
         onClick={() => setMenuOpen((v) => !v)}
         aria-label="Toggle menu"

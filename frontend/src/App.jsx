@@ -1,4 +1,5 @@
 import { lazy, Suspense, useEffect, useState } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 import { Navbar } from "./components/layout/Navbar";
 import { useReveal } from "./hooks/useReveal";
@@ -8,11 +9,13 @@ import { HomePage } from "./pages/Home/HomePage";
 
 // Lazy-loaded routes: each becomes a separate JS chunk
 const AboutPage        = lazy(() => import("./pages/About/AboutPage"));
+const ProgramsPage     = lazy(() => import("./pages/Programs/ProgramsPage"));
 const GalleryPage      = lazy(() => import("./pages/Gallery/GalleryPage"));
 const TestimonialsPage = lazy(() => import("./pages/Testimonials/TestimonialsPage"));
 const ContactPage      = lazy(() => import("./pages/Contact/ContactPage"));
+const NotFoundPage     = lazy(() => import("./pages/NotFound/NotFoundPage"));
 
-// Lazy-loaded dialog: chunk is NOT requested until the first open
+// Lazy-loaded dialog: chunk is NOT requested until first open
 const EnquiryDialog    = lazy(() => import("./components/ui/EnquiryDialog"));
 
 import { initialForm } from "./data/constants";
@@ -24,17 +27,18 @@ function PageFallback() {
 }
 
 export default function App() {
-  const [page, setPage] = useState("home");
+  const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [form, setForm] = useState(initialForm);
   const [submitted, setSubmitted] = useState(false);
   const [enquiryOpen, setEnquiryOpen] = useState(false);
   // Tracks whether the dialog has ever been opened this session.
-  // EnquiryDialog is not mounted (and its chunk not fetched) until the first open.
+  // EnquiryDialog is not mounted (and its chunk not fetched) until first open.
   const [dialogEverOpened, setDialogEverOpened] = useState(false);
 
-  useReveal(page);
+  // Re-run animation observers whenever route changes
+  useReveal(location.pathname);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
@@ -46,7 +50,12 @@ export default function App() {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
     setMenuOpen(false);
-  }, [page]);
+  }, [location.pathname]);
+
+  const handleOpenEnquiry = () => {
+    setDialogEverOpened(true);
+    setEnquiryOpen(true);
+  };
 
   const onChange = (event) => {
     const { name, value } = event.target;
@@ -68,33 +77,42 @@ export default function App() {
   return (
     <div className="app app-v2">
       <Navbar
-        page={page}
-        setPage={setPage}
         menuOpen={menuOpen}
         setMenuOpen={setMenuOpen}
         scrolled={scrolled}
-        onOpenEnquiry={() => { setDialogEverOpened(true); setEnquiryOpen(true); }}
+        onOpenEnquiry={handleOpenEnquiry}
       />
 
       <Suspense fallback={<PageFallback />}>
-        <main className="page-shell-v2" key={page}>
-          {page === "home" && (
-            <HomePage
-              setPage={setPage}
-              onOpenEnquiry={() => { setDialogEverOpened(true); setEnquiryOpen(true); }}
+        <main className="page-shell-v2" key={location.pathname}>
+          <Routes>
+            <Route
+              path="/"
+              element={<HomePage onOpenEnquiry={handleOpenEnquiry} />}
             />
-          )}
-          {page === "about" && <AboutPage setPage={setPage} />}
-          {page === "gallery" && <GalleryPage />}
-          {page === "testimonials" && <TestimonialsPage />}
-          {page === "contact" && (
-            <ContactPage
-              form={form}
-              submitted={submitted}
-              onChange={onChange}
-              onSubmit={onSubmit}
+            <Route
+              path="/about"
+              element={<AboutPage onOpenEnquiry={handleOpenEnquiry} />}
             />
-          )}
+            <Route
+              path="/programs"
+              element={<ProgramsPage onOpenEnquiry={handleOpenEnquiry} />}
+            />
+            <Route path="/gallery" element={<GalleryPage />} />
+            <Route path="/testimonials" element={<TestimonialsPage />} />
+            <Route
+              path="/contact"
+              element={
+                <ContactPage
+                  form={form}
+                  submitted={submitted}
+                  onChange={onChange}
+                  onSubmit={onSubmit}
+                />
+              }
+            />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
         </main>
       </Suspense>
 

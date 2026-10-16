@@ -56,11 +56,13 @@ a {
 
 .brand,
 .nav button,
+.nav a,
 .menu-button {
   border: 0;
   background: transparent;
   color: #06182f;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .brand {
@@ -99,6 +101,7 @@ a {
 
 .brand small,
 .nav button,
+.nav a,
 .outline-action,
 .eyebrow {
   font-size: 0.78rem;
@@ -121,15 +124,18 @@ a {
   white-space: nowrap;
 }
 
-.nav button {
+.nav button,
+.nav a {
   position: relative;
   padding: 0.55rem 0.2rem;
   white-space: nowrap !important;
   word-break: keep-all;
   flex-shrink: 0;
+  text-decoration: none;
 }
 
-.nav button::after {
+.nav button::after,
+.nav a::after {
   position: absolute;
   right: 0;
   bottom: 0.22rem;
@@ -144,7 +150,10 @@ a {
 }
 
 .nav button:hover::after,
-.nav button:focus-visible::after {
+.nav button:focus-visible::after,
+.nav a:hover::after,
+.nav a:focus-visible::after,
+.nav a.active::after {
   transform: scaleX(1);
 }
 
