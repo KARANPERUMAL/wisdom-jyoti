@@ -78,7 +78,7 @@ export function GalleryPage() {
 
       {/* Main Gallery Section */}
       <section className="page-section-v2 gallery-section">
-        <h2 className="gallery-section-heading">Photos &amp; Videos</h2>
+        <h2 className="gallery-section-heading" data-reveal>Photos &amp; Videos</h2>
         {/* Playful Filter Navigation */}
         <div className="gallery-toolbar" data-reveal>
           <div className="gallery-tabs">
