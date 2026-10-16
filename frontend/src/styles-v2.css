@@ -1775,6 +1775,9 @@ textarea:hover {
   }
 
   .header-v2 {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
     padding: 0.65rem 1rem !important;
   }
 
@@ -1806,12 +1809,58 @@ textarea:hover {
 
   .menu-button {
     display: flex !important;
-    align-items: center;
-    justify-content: center;
-    width: 2.6rem;
-    height: 2.6rem;
-    padding: 0.45rem;
-    cursor: pointer;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 4.5px !important;
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    padding: 0 !important;
+    background: rgba(255, 255, 255, 0.96) !important;
+    border: 2.5px solid var(--ink) !important;
+    border-radius: 12px !important;
+    box-shadow: 2px 2px 0 var(--ink) !important;
+    cursor: pointer !important;
+    flex-shrink: 0 !important;
+    z-index: 100 !important;
+    transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease !important;
+  }
+
+  .menu-button:hover,
+  .menu-button:focus-visible {
+    background: #ffffff !important;
+    transform: translateY(-1px) !important;
+  }
+
+  .menu-button:active {
+    transform: translate(1px, 1px) !important;
+    box-shadow: 1px 1px 0 var(--ink) !important;
+  }
+
+  .menu-button span {
+    display: block !important;
+    width: 20px !important;
+    height: 2.5px !important;
+    margin: 0 !important;
+    background-color: var(--ink) !important;
+    border-radius: 999px !important;
+    transition: transform 0.22s ease, opacity 0.22s ease !important;
+    transform-origin: center !important;
+  }
+
+  .menu-button.is-open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg) !important;
+  }
+
+  .menu-button.is-open span:nth-child(2) {
+    opacity: 0 !important;
+    transform: scaleX(0) !important;
+  }
+
+  .menu-button.is-open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg) !important;
   }
 
   .nav-v2 {
@@ -2109,17 +2158,28 @@ textarea:hover {
     padding-bottom: 3.5rem !important;
   }
 
-  .gallery-tabs {
+  .gallery-toolbar {
     width: 100% !important;
+    margin: 0 auto 2.25rem auto !important;
+    display: flex !important;
     justify-content: center !important;
-    padding: 0.35rem !important;
-    gap: 0.3rem !important;
+  }
+
+  .gallery-tabs {
+    display: inline-flex !important;
+    flex-wrap: nowrap !important;
+    justify-content: center !important;
+    padding: 0.4rem !important;
+    gap: 0.4rem !important;
+    border-radius: 999px !important;
+    max-width: 100% !important;
   }
 
   .gallery-tab-btn {
-    padding: 0.55rem 0.9rem !important;
-    font-size: 0.82rem !important;
+    padding: 0.55rem 0.95rem !important;
+    font-size: 0.88rem !important;
     gap: 0.35rem !important;
+    min-height: 40px !important;
   }
 
   .gallery-scrapbook-grid {
@@ -2992,6 +3052,56 @@ textarea:hover {
     transform: none !important;
   }
 }
+
+/* ========================================================
+   Mobile Gallery Filter Tabs (Two-Row Balanced Layout)
+   Prevents clipping/horizontal scroll on all mobile screens (320px - 580px)
+   ======================================================== */
+@media (max-width: 580px) {
+  .gallery-toolbar {
+    width: 100% !important;
+    margin: 0 auto 1.85rem auto !important;
+    padding-inline: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .gallery-tabs {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 0.45rem !important;
+    padding: 0.45rem !important;
+    width: 100% !important;
+    max-width: 390px !important;
+    border-radius: 20px !important;
+    box-sizing: border-box !important;
+  }
+
+  .gallery-tab-btn {
+    flex: 1 1 calc(50% - 0.45rem) !important;
+    min-width: 0 !important;
+    min-height: 44px !important;
+    justify-content: center !important;
+    padding: 0.55rem 0.5rem !important;
+    font-size: 0.84rem !important;
+    gap: 0.35rem !important;
+    box-sizing: border-box !important;
+  }
+
+  .gallery-tab-btn:first-child {
+    flex: 1 1 100% !important;
+  }
+
+  .gallery-tab-btn .tab-count {
+    font-size: 0.72rem !important;
+    min-width: 1.35rem !important;
+    height: 1.35rem !important;
+    padding: 0 0.3rem !important;
+  }
+}
+
 
 
 

@@ -33,7 +33,11 @@ export function Navbar({ menuOpen, setMenuOpen, scrolled, onOpenEnquiry }) {
         </span>
       </Link>
 
-      <nav className={menuOpen ? "nav nav-v2 open" : "nav nav-v2"}>
+      <nav
+        id="mobile-nav-drawer"
+        className={menuOpen ? "nav nav-v2 open" : "nav nav-v2"}
+        aria-label="Main navigation"
+      >
         {navItems.map(([label, path]) => (
           <NavLink
             key={path}
@@ -64,10 +68,11 @@ export function Navbar({ menuOpen, setMenuOpen, scrolled, onOpenEnquiry }) {
 
       <button
         type="button"
-        className="menu-button"
+        className={menuOpen ? "menu-button is-open" : "menu-button"}
         onClick={() => setMenuOpen((v) => !v)}
-        aria-label="Toggle menu"
+        aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
         aria-expanded={menuOpen}
+        aria-controls="mobile-nav-drawer"
       >
         <span />
         <span />
