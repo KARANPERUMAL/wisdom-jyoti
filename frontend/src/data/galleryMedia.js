@@ -10,6 +10,12 @@ import video1 from "../assets/videos/video1.mp4";
 import video2 from "../assets/videos/video2.mp4";
 import video3 from "../assets/videos/video3.mp4";
 import video4 from "../assets/videos/video4.mp4";
+import video5 from "../assets/videos/video5.mp4";
+import video6 from "../assets/videos/video6.mp4";
+import video7 from "../assets/videos/video7.mp4";
+import video8 from "../assets/videos/video8.mp4";
+import video9 from "../assets/videos/video9.mp4";
+import video10 from "../assets/videos/video10.mp4";
 
 export const galleryMedia = [
   {
@@ -151,5 +157,71 @@ export const galleryMedia = [
     featured: true,
     description: "Celebrating every child's progress, curiosity, and bright smiles.",
     alt: "Child in a red floral dress posing in a First Day of School photo frame",
+  },
+  {
+    id: "vid-5",
+    type: "video",
+    src: video5,
+    title: "Little Pianist & Musical Rhythm",
+    category: "Music & Performing Arts",
+    tag: "🎹 Little Pianist",
+    aspect: "vertical",
+    featured: false,
+    description: "Developing rhythm, auditory skills, and musical confidence through keyboard practice.",
+  },
+  {
+    id: "vid-6",
+    type: "video",
+    src: video6,
+    title: "Joyful Dance & Movement",
+    category: "Play & Fun",
+    tag: "💃 Dance & Rhythm",
+    aspect: "vertical",
+    featured: false,
+    description: "Expressive dance and energetic movement encouraging motor coordination and happiness.",
+  },
+  {
+    id: "vid-7",
+    type: "video",
+    src: video7,
+    title: "Tower Building & Focus Skills",
+    category: "Learning",
+    tag: "🏗️ Focus & Balance",
+    aspect: "vertical",
+    featured: false,
+    description: "Developing spatial awareness, fine motor precision, and patience through block balancing.",
+  },
+  {
+    id: "vid-8",
+    type: "video",
+    src: video8,
+    title: "Puzzle Solving & Mind Games",
+    category: "Activities",
+    tag: "🧩 Puzzle Master",
+    aspect: "vertical",
+    featured: false,
+    description: "Stimulating critical thinking, problem-solving, and hand-eye coordination with interactive puzzles.",
+  },
+  {
+    id: "vid-9",
+    type: "video",
+    src: video9,
+    title: "Hands-on Discovery & Craft Play",
+    category: "Art & Craft",
+    tag: "📦 Creative Play",
+    aspect: "landscape",
+    featured: false,
+    description: "Curiosity-driven hands-on activities that foster imagination and independent thinking.",
+  },
+  {
+    id: "vid-10",
+    type: "video",
+    src: video10,
+    title: "Guitar Lessons & Instrumental Skills",
+    category: "Skill Development",
+    tag: "🎸 Young Musician",
+    aspect: "vertical",
+    featured: true,
+    description: "Fostering acoustic guitar skills, finger dexterity, and musical talent at our skill development center.",
   },
 ];
